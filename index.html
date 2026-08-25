@@ -3,140 +3,264 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dhruv Goyal | IIT Madras</title>
+  <title>Dhruv Goyal | Mathematics & Quant Research | IIT Madras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #0f172a;
-      --card-bg: #1e293b;
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-hover: #162032;
+      --border: #1e293b;
+      --border-hover: #334155;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --border: #334155;
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.12);
+      --cyan: #38bdf8;
+      --cyan-glow: rgba(56, 189, 248, 0.12);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     body {
       background-color: var(--bg);
       color: var(--text-main);
-      line-height: 1.6;
-      padding: 40px 20px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.65;
+      padding: 50px 20px;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 840px;
       margin: 0 auto;
     }
 
+    /* Header */
     header {
       margin-bottom: 40px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--emerald);
+      background: var(--emerald-glow);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 10px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     h1 {
       font-size: 2.5rem;
       font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
     }
 
     .subtitle {
       font-size: 1.15rem;
-      color: var(--accent);
+      color: var(--cyan);
       font-weight: 500;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
 
     .meta {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
+    /* Action / Contact Pills */
+    .link-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--text-main);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--emerald);
+      color: var(--emerald);
+      background: var(--card-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Section Headers */
     section {
-      margin-bottom: 36px;
+      margin-bottom: 40px;
     }
 
     h2 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
+      font-weight: 600;
       color: var(--text-main);
       margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
     }
 
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Cards */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 20px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 4px;
     }
 
     .card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 6px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .card-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
     .card p {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
+    /* Tags */
     .tag-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       margin-top: 12px;
     }
 
     .tag {
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent);
+      background: rgba(30, 41, 59, 0.6);
+      color: var(--cyan);
       border: 1px solid rgba(56, 189, 248, 0.2);
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 4px;
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    .links-grid {
+    .tag-emerald {
+      color: var(--emerald);
+      border-color: rgba(16, 185, 129, 0.3);
+      background: var(--emerald-glow);
+    }
+
+    /* Grids */
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
     }
 
-    .btn {
-      display: inline-block;
-      text-align: center;
-      padding: 10px 16px;
+    .skill-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      color: var(--text-main);
-      text-decoration: none;
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .skill-card h4 {
+      font-size: 0.95rem;
+      color: var(--emerald);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .skill-card ul {
+      list-style-type: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.8;
+    }
+
+    /* Coursework Grid */
+    .course-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .course-item {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      padding: 10px 14px;
       border-radius: 6px;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
+      font-size: 0.88rem;
     }
 
-    .btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+    .course-code {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--cyan);
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: block;
+      margin-bottom: 2px;
     }
 
+    /* Footer */
     footer {
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-top: 50px;
-      padding-top: 20px;
+      font-size: 0.8rem;
+      margin-top: 60px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
     }
   </style>
 </head>
@@ -144,59 +268,120 @@
 
   <div class="container">
     <header>
+      <span class="badge">Academic & Research Portfolio</span>
       <h1>Dhruv Goyal</h1>
-      <p class="subtitle">Undergraduate in Mathematics @ IIT Madras</p>
-      <p class="meta">Born February 6, 2008 &bull; Chennai, India</p>
+      <p class="subtitle">Undergraduate in Mathematics &bull; IIT Madras</p>
+      <p class="meta">Department of Mathematics &bull; Chennai, Tamil Nadu</p>
+      
+      <div class="link-group">
+        <a href="https://github.com/dhruvgoyal-io" target="_blank" class="pill-btn">GitHub</a>
+        <a href="https://www.linkedin.com/in/dhruv-goyal-624324302" target="_blank" class="pill-btn">LinkedIn</a>
+        <a href="https://instagram.com/_dhruv_x_" target="_blank" class="pill-btn">Instagram</a>
+        <a href="mailto:your-smail-id@smail.iitm.ac.in" class="pill-btn">IITM S-Mail</a>
+        <a href="mailto:your-personal-email@gmail.com" class="pill-btn">Personal Email</a>
+      </div>
     </header>
 
     <section>
-      <h2>About Me</h2>
+      <h2>About & Focus</h2>
       <div class="card">
         <p>
-          I am a first-year undergraduate student pursuing a major in <strong>Mathematics</strong> at the <strong>Indian Institute of Technology Madras (IITM)</strong>. 
-          My primary focus areas lie at the intersection of rigorous mathematical theory, quantitative finance, and artificial intelligence.
+          I am a first-year undergraduate pursuing a major in <strong>Mathematics</strong> at the <strong>Indian Institute of Technology Madras</strong>. 
+          My interests lie primarily in <strong>Quantitative Finance</strong>, <strong>Stochastic Modeling</strong>, <strong>Theoretical Machine Learning</strong>, and pure mathematics, with an active focus on <strong>General & Algebraic Topology</strong>.
         </p>
       </div>
     </section>
 
     <section>
-      <h2>Academic & Research Interests</h2>
-      <div class="card">
-        <h3>Quantitative Finance & Modeling</h3>
-        <p>Stochastic calculus, probability theory, algorithmic trading strategies, and statistical modeling for financial markets.</p>
-        <div class="tag-container">
-          <span class="tag">Probability & Statistics</span>
-          <span class="tag">Stochastic Processes</span>
-          <span class="tag">Financial Modeling</span>
+      <h2>Core Research & Focus Areas</h2>
+      <div class="grid-2">
+        <div class="skill-card">
+          <h4>Quantitative Finance & Applied Math</h4>
+          <ul>
+            <li>&bull; Stochastic Calculus & Martingales</li>
+            <li>&bull; Statistical Arbitrage & Risk Analysis</li>
+            <li>&bull; Numerical Methods & Scientific Computing</li>
+            <li>&bull; Discrete Probability & Time Series</li>
+          </ul>
         </div>
-      </div>
 
-      <div class="card">
-        <h3>Artificial Intelligence & Machine Learning</h3>
-        <p>Mathematical foundations of deep learning, optimization methods, statistical learning theory, and predictive algorithms.</p>
-        <div class="tag-container">
-          <span class="tag">Machine Learning</span>
-          <span class="tag">Optimization</span>
-          <span class="tag">Linear Algebra</span>
+        <div class="skill-card">
+          <h4>Theoretical Foundations & AI</h4>
+          <ul>
+            <li>&bull; Point-Set & Differential Topology</li>
+            <li>&bull; Mathematical Optimization & Loss Dynamics</li>
+            <li>&bull; Linear Algebra & Spectral Analysis</li>
+            <li>&bull; Algorithmic Efficiency in Machine Learning</li>
+          </ul>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Education</h2>
+      <h2>Education & Relevant Coursework</h2>
       <div class="card">
-        <h3>Indian Institute of Technology Madras</h3>
-        <p>Bachelor of Science (BS / B.Tech) in Mathematics</p>
-        <p class="meta">First Year Undergraduate &bull; Expected 2029</p>
+        <div class="card-header">
+          <h3>Indian Institute of Technology Madras</h3>
+          <span class="card-date">2026 – 2030</span>
+        </div>
+        <p>Bachelor of Science (BS) in Mathematics</p>
+        
+        <div class="course-list">
+          <div class="course-item">
+            <span class="course-code">MA1100</span>
+            Calculus & Analysis
+          </div>
+          <div class="course-item">
+            <span class="course-code">MA1103</span>
+            Scientific Computing
+          </div>
+          <div class="course-item">
+            <span class="course-code">MA2101</span>
+            Linear Algebra & Differential Eq.
+          </div>
+          <div class="course-item">
+            <span class="course-code">PH1010</span>
+            Physics Foundations
+          </div>
+        </div>
       </div>
     </section>
 
     <section>
-      <h2>Connect</h2>
-      <div class="links-grid">
-        <a href="mailto:dhruv@example.com" class="btn">Email Me</a>
-        <a href="https://github.com" target="_blank" class="btn">GitHub Profile</a>
-        <a href="https://linkedin.com" target="_blank" class="btn">LinkedIn Profile</a>
+      <h2>Technical & Computational Toolkit</h2>
+      <div class="grid-2">
+        <div class="skill-card">
+          <h4>Programming & Scientific Computing</h4>
+          <ul>
+            <li>&bull; <strong>Scientific Computing:</strong> MATLAB, Python (NumPy, SciPy, Pandas)</li>
+            <li>&bull; <strong>Core Languages:</strong> C / C++, Python</li>
+            <li>&bull; <strong>Data Exploration:</strong> Matplotlib, Statistical Modeling</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h4>Workflow & Mathematics Tools</h4>
+          <ul>
+            <li>&bull; <strong>Typesetting:</strong> LaTeX / Overleaf (Research Papers & Proofs)</li>
+            <li>&bull; <strong>Tools:</strong> Git, GitHub, Unix Command Line</li>
+            <li>&bull; <strong>Domains:</strong> Computational Linear Algebra, Topology</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Interests Beyond Academics</h2>
+      <div class="card">
+        <p>
+          Outside of mathematics and algorithms, I actively engage in:
+        </p>
+        <div class="tag-container" style="margin-top: 10px;">
+          <span class="tag tag-emerald">Badminton (Active Enthusiast)</span>
+          <span class="tag tag-emerald">Music & Acoustic Jam Sessions</span>
+          <span class="tag tag-emerald">Culinary Exploration & Cooking</span>
+          <span class="tag tag-emerald">Travel & Exploration</span>
+        </div>
       </div>
     </section>
 
