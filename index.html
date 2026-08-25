@@ -3,392 +3,840 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dhruv Goyal | Mathematics & Quant Research | IIT Madras</title>
+  <title>Dhruv Goyal | Mathematics, Quant & AI | IIT Madras</title>
+  
+  <!-- Modern & Lively Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: #111827;
-      --card-hover: #162032;
-      --border: #1e293b;
-      --border-hover: #334155;
+      --bg-deep: #06040d;
+      --bg-cosmic: #0e091f;
+      --card-bg: rgba(22, 14, 46, 0.65);
+      --card-hover: rgba(33, 21, 68, 0.85);
+      --card-border: rgba(168, 85, 247, 0.2);
+      --card-border-glow: rgba(217, 70, 239, 0.5);
+      
+      --purple-primary: #a855f7;
+      --violet-bright: #8b5cf6;
+      --magenta-neon: #ec4899;
+      --cyan-bright: #38bdf8;
+      --emerald-accent: #10b981;
+      
       --text-main: #f8fafc;
+      --text-body: #cbd5e1;
       --text-muted: #94a3b8;
-      --emerald: #10b981;
-      --emerald-glow: rgba(16, 185, 129, 0.12);
-      --cyan: #38bdf8;
-      --cyan-glow: rgba(56, 189, 248, 0.12);
+      --nav-bg: rgba(14, 9, 31, 0.75);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--bg);
+      background-color: var(--bg-deep);
       color: var(--text-main);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.65;
-      padding: 50px 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Galactic Canvas */
+    #space-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Glowing Nebula Orbs */
+    .nebula-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.35;
+      animation: floatOrb 18s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, #7c3aed, #4c1d95);
+      top: -100px;
+      left: -100px;
+    }
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #db2777, #701a75);
+      bottom: 5%;
+      right: -120px;
+      animation-duration: 22s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(80px, 60px) scale(1.15); }
     }
 
     .container {
-      max-width: 840px;
+      max-width: 960px;
       margin: 0 auto;
+      padding: 40px 24px 100px;
     }
 
-    /* Header */
-    header {
-      margin-bottom: 40px;
-      padding-bottom: 28px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .badge {
-      display: inline-block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--emerald);
-      background: var(--emerald-glow);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 3px 10px;
-      border-radius: 9999px;
-      margin-bottom: 12px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-    }
-
-    .subtitle {
-      font-size: 1.15rem;
-      color: var(--cyan);
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .meta {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* Action / Contact Pills */
-    .link-group {
+    /* Top Navigation Bar */
+    nav {
+      position: sticky;
+      top: 18px;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      padding: 8px 16px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    .pill-btn {
+    .nav-brand {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, #fff, var(--purple-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding-left: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--purple-primary), var(--violet-bright));
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    }
+
+    /* Page View Controller */
+    .page-view {
+      display: none;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .page-view.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-bottom: 40px;
+    }
+
+    .status-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      color: var(--text-main);
+      font-size: 0.78rem;
+      color: var(--cyan-bright);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      letter-spacing: 0.04em;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--cyan-bright);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--cyan-bright);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    h1.hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--purple-primary) 80%, var(--magenta-neon) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text-body);
+      margin-bottom: 12px;
+    }
+
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Cards & Grids */
+    .card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 8px 14px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.2s ease-in-out;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 26px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .pill-btn:hover {
-      border-color: var(--emerald);
-      color: var(--emerald);
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--purple-primary), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
       background: var(--card-hover);
-      transform: translateY(-1px);
+      border-color: var(--card-border-glow);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(168, 85, 247, 0.15);
     }
 
-    /* Section Headers */
-    section {
-      margin-bottom: 40px;
+    .card:hover::before {
+      opacity: 1;
     }
 
-    h2 {
+    .card h3 {
+      font-family: 'Outfit', sans-serif;
       font-size: 1.2rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-main);
-      margin-bottom: 16px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p {
+      color: var(--text-body);
+      font-size: 0.96rem;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 22px;
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    h2::after {
+    .section-title::after {
       content: "";
       flex: 1;
       height: 1px;
-      background: var(--border);
+      background: linear-gradient(90deg, var(--card-border), transparent);
     }
 
-    /* Cards */
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 14px;
-      transition: all 0.2s ease;
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
     }
 
-    .card:hover {
-      border-color: var(--border-hover);
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 6px;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-
-    .card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .card-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .card p {
-      color: var(--text-muted);
-      font-size: 0.92rem;
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
     }
 
     /* Tags */
-    .tag-container {
+    .tag-cluster {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 12px;
+      gap: 8px;
+      margin-top: 14px;
     }
 
     .tag {
-      background: rgba(30, 41, 59, 0.6);
-      color: var(--cyan);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 0.75rem;
       font-family: 'JetBrains Mono', monospace;
-    }
-
-    .tag-emerald {
-      color: var(--emerald);
-      border-color: rgba(16, 185, 129, 0.3);
-      background: var(--emerald-glow);
-    }
-
-    /* Grids */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-    }
-
-    .skill-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 18px;
-    }
-
-    .skill-card h4 {
-      font-size: 0.95rem;
-      color: var(--emerald);
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
-    .skill-card ul {
-      list-style-type: none;
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      line-height: 1.8;
-    }
-
-    /* Coursework Grid */
-    .course-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .course-item {
-      background: #0f172a;
-      border: 1px solid var(--border);
-      padding: 10px 14px;
+      font-size: 0.78rem;
+      padding: 4px 10px;
       border-radius: 6px;
-      font-size: 0.88rem;
+      background: rgba(168, 85, 247, 0.1);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.25);
+    }
+
+    .tag-cyan {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--cyan-bright);
+      border-color: rgba(56, 189, 248, 0.25);
+    }
+
+    .tag-pink {
+      background: rgba(236, 72, 153, 0.1);
+      color: var(--magenta-neon);
+      border-color: rgba(236, 72, 153, 0.25);
+    }
+
+    /* Course Cards */
+    .course-card {
+      background: rgba(14, 9, 31, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .course-card:hover {
+      border-color: var(--purple-primary);
+      transform: translateY(-2px);
     }
 
     .course-code {
       font-family: 'JetBrains Mono', monospace;
-      color: var(--cyan);
       font-weight: 600;
-      font-size: 0.8rem;
-      display: block;
-      margin-bottom: 2px;
+      color: var(--magenta-neon);
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    .course-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .course-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Dedicated Contact Hub (Page 5) */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .contact-card:hover {
+      background: var(--card-hover);
+      border-color: var(--magenta-neon);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(236, 72, 153, 0.2);
+    }
+
+    .contact-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--purple-primary);
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      word-break: break-all;
+    }
+
+    .contact-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--cyan-bright);
+      font-weight: 500;
+    }
+
+    .copy-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(135deg, var(--purple-primary), var(--magenta-neon));
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 999px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .copy-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
 
     /* Footer */
     footer {
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.8rem;
-      margin-top: 60px;
+      font-size: 0.85rem;
+      margin-top: 80px;
       padding-top: 24px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--card-border);
       font-family: 'JetBrains Mono', monospace;
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        flex-direction: column;
+        gap: 12px;
+        border-radius: 20px;
+        padding: 14px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      h1.hero-title {
+        font-size: 2.2rem;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Ambient Animated Starfield & Nebula Glow -->
+  <canvas id="space-canvas"></canvas>
+  <div class="nebula-orb orb-1"></div>
+  <div class="nebula-orb orb-2"></div>
+
   <div class="container">
-    <header>
-      <span class="badge">Academic & Research Portfolio</span>
-      <h1>Dhruv Goyal</h1>
-      <p class="subtitle">Undergraduate in Mathematics &bull; IIT Madras</p>
-      <p class="meta">Department of Mathematics &bull; Chennai, Tamil Nadu</p>
+    
+    <!-- Top Interactive Navbar -->
+    <nav>
+      <div class="nav-brand">DG.</div>
+      <ul class="nav-links">
+        <li><button class="nav-btn active" onclick="switchPage('overview')">Overview</button></li>
+        <li><button class="nav-btn" onclick="switchPage('academics')">Academics</button></li>
+        <li><button class="nav-btn" onclick="switchPage('quant')">Quant & Lab</button></li>
+        <li><button class="nav-btn" onclick="switchPage('life')">Interests</button></li>
+        <li><button class="nav-btn" onclick="switchPage('connect')">Connect</button></li>
+      </ul>
+    </nav>
+
+    <!-- ================= PAGE 1: OVERVIEW ================= -->
+    <div id="page-overview" class="page-view active">
+      <div class="hero">
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          IIT MADRAS &bull; DEPARTMENT OF MATHEMATICS
+        </div>
+        <h1 class="hero-title">Dhruv Goyal</h1>
+        <p class="hero-tagline">Undergraduate in Mathematics &bull; Quantitative Modeling &bull; Theoretical AI</p>
+        <p class="hero-sub">
+          <span>Chennai, India</span> &bull; 
+          <span>BS Mathematics (Class of 2030)</span> &bull;
+          <span style="color: var(--purple-primary);">Exploring Topology & Stochastic Systems</span>
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>About & Trajectory</h3>
+        <p>
+          I am a first-year undergraduate pursuing a major in Mathematics at the <strong>Indian Institute of Technology Madras</strong>. 
+          My intellectual interests lie at the convergence of pure mathematical theory and rigorous computational models. I study structural topology, stochastic calculus, and machine learning optimization dynamics, aiming to develop high-dimensional predictive algorithms for quantitative financial markets.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Quantitative Math</h3>
+          <p>Stochastic differential equations, discrete martingales, and arbitrage pricing mechanisms.</p>
+          <div class="tag-cluster">
+            <span class="tag">Probability</span>
+            <span class="tag">Stochastics</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Pure Mathematics</h3>
+          <p>Point-set and algebraic topology, abstract metric spaces, and linear operator theory.</p>
+          <div class="tag-cluster">
+            <span class="tag tag-pink">Topology</span>
+            <span class="tag tag-pink">Analysis</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Scientific Computing</h3>
+          <p>Matrix factorizations, high-performance algorithms, and numerical simulations.</p>
+          <div class="tag-cluster">
+            <span class="tag tag-cyan">MATLAB</span>
+            <span class="tag tag-cyan">Python</span>
+            <span class="tag tag-cyan">C++</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PAGE 2: ACADEMICS & RESEARCH ================= -->
+    <div id="page-academics" class="page-view">
+      <h2 class="section-title">Academic Curriculum & Research Focus</h2>
       
-      <div class="link-group">
-        <a href="https://github.com/dhruvgoyal-io" target="_blank" class="pill-btn">GitHub</a>
-        <a href="https://www.linkedin.com/in/dhruv-goyal-624324302" target="_blank" class="pill-btn">LinkedIn</a>
-        <a href="https://instagram.com/_dhruv_x_" target="_blank" class="pill-btn">Instagram</a>
-        <a href="mailto:your-smail-id@smail.iitm.ac.in" class="pill-btn">IITM S-Mail</a>
-        <a href="mailto:your-personal-email@gmail.com" class="pill-btn">Personal Email</a>
-      </div>
-    </header>
-
-    <section>
-      <h2>About & Focus</h2>
       <div class="card">
-        <p>
-          I am a first-year undergraduate pursuing a major in <strong>Mathematics</strong> at the <strong>Indian Institute of Technology Madras</strong>. 
-          My interests lie primarily in <strong>Quantitative Finance</strong>, <strong>Stochastic Modeling</strong>, <strong>Theoretical Machine Learning</strong>, and pure mathematics, with an active focus on <strong>General & Algebraic Topology</strong>.
+        <h3>Department of Mathematics, IIT Madras</h3>
+        <p style="margin-bottom: 16px;">
+          Engaged in an intensive mathematical program combining foundational pure analysis with algorithmic computational frameworks.
         </p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Core Research & Focus Areas</h2>
-      <div class="grid-2">
-        <div class="skill-card">
-          <h4>Quantitative Finance & Applied Math</h4>
-          <ul>
-            <li>&bull; Stochastic Calculus & Martingales</li>
-            <li>&bull; Statistical Arbitrage & Risk Analysis</li>
-            <li>&bull; Numerical Methods & Scientific Computing</li>
-            <li>&bull; Discrete Probability & Time Series</li>
-          </ul>
-        </div>
-
-        <div class="skill-card">
-          <h4>Theoretical Foundations & AI</h4>
-          <ul>
-            <li>&bull; Point-Set & Differential Topology</li>
-            <li>&bull; Mathematical Optimization & Loss Dynamics</li>
-            <li>&bull; Linear Algebra & Spectral Analysis</li>
-            <li>&bull; Algorithmic Efficiency in Machine Learning</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Education & Relevant Coursework</h2>
-      <div class="card">
-        <div class="card-header">
-          <h3>Indian Institute of Technology Madras</h3>
-          <span class="card-date">2026 – 2030</span>
-        </div>
-        <p>Bachelor of Science (BS) in Mathematics</p>
         
-        <div class="course-list">
-          <div class="course-item">
-            <span class="course-code">MA1100</span>
-            Calculus & Analysis
+        <div class="grid-2">
+          <div class="course-card">
+            <div class="course-code">MA1100</div>
+            <div class="course-name">Calculus & Real Analysis</div>
+            <div class="course-desc">Rigorous sequences, series convergence, Taylor theorems, multivariable differential calculus, and Riemann integration.</div>
           </div>
-          <div class="course-item">
-            <span class="course-code">MA1103</span>
-            Scientific Computing
+
+          <div class="course-card">
+            <div class="course-code">MA1103</div>
+            <div class="course-name">Scientific Computing</div>
+            <div class="course-desc">Algorithm design, numerical errors, linear system solvers, root-finding, and scientific programming via MATLAB & Python.</div>
           </div>
-          <div class="course-item">
-            <span class="course-code">MA2101</span>
-            Linear Algebra & Differential Eq.
+
+          <div class="course-card">
+            <div class="course-code">MA2101</div>
+            <div class="course-name">Linear Algebra & ODEs</div>
+            <div class="course-desc">Vector spaces, inner product spaces, spectral theorem, eigen-systems, and analytical solutions to differential equations.</div>
           </div>
-          <div class="course-item">
-            <span class="course-code">PH1010</span>
-            Physics Foundations
+
+          <div class="course-card">
+            <div class="course-code">PH1010</div>
+            <div class="course-name">Foundations of Physics</div>
+            <div class="course-desc">Classical mechanics, oscillatory phenomena, wave propagation, and electromagnetic field equations.</div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section>
-      <h2>Technical & Computational Toolkit</h2>
-      <div class="grid-2">
-        <div class="skill-card">
-          <h4>Programming & Scientific Computing</h4>
-          <ul>
-            <li>&bull; <strong>Scientific Computing:</strong> MATLAB, Python (NumPy, SciPy, Pandas)</li>
-            <li>&bull; <strong>Core Languages:</strong> C / C++, Python</li>
-            <li>&bull; <strong>Data Exploration:</strong> Matplotlib, Statistical Modeling</li>
-          </ul>
-        </div>
-
-        <div class="skill-card">
-          <h4>Workflow & Mathematics Tools</h4>
-          <ul>
-            <li>&bull; <strong>Typesetting:</strong> LaTeX / Overleaf (Research Papers & Proofs)</li>
-            <li>&bull; <strong>Tools:</strong> Git, GitHub, Unix Command Line</li>
-            <li>&bull; <strong>Domains:</strong> Computational Linear Algebra, Topology</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Interests Beyond Academics</h2>
       <div class="card">
+        <h3>Deep Exploration: Topology & Geometry</h3>
         <p>
-          Outside of mathematics and algorithms, I actively engage in:
+          Beyond core curriculum coursework, I actively explore <strong>General & Point-Set Topology</strong>. 
+          Investigating topological invariants, compactness, connectedness, quotient spaces, and homotopy fundamentals—studying how continuous deformations preserve geometric properties and how topological data analysis (TDA) extracts structure from complex datasets.
         </p>
-        <div class="tag-container" style="margin-top: 10px;">
-          <span class="tag tag-emerald">Badminton (Active Enthusiast)</span>
-          <span class="tag tag-emerald">Music & Acoustic Jam Sessions</span>
-          <span class="tag tag-emerald">Culinary Exploration & Cooking</span>
-          <span class="tag tag-emerald">Travel & Exploration</span>
+        <div class="tag-cluster">
+          <span class="tag tag-pink">Point-Set Topology</span>
+          <span class="tag tag-pink">Quotient Spaces</span>
+          <span class="tag tag-pink">Topological Data Analysis</span>
+          <span class="tag">Metric Geometry</span>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- ================= PAGE 3: QUANT & LAB ================= -->
+    <div id="page-quant" class="page-view">
+      <h2 class="section-title">Quantitative Research & Projects</h2>
+
+      <div class="card">
+        <h3>Algorithmic Numerical Solvers & Matrix Decompositions</h3>
+        <p>
+          Constructed automated computational workflows to solve large-scale systems of linear equations, comparing numerical stability, error propagation, and time complexity across LU Decomposition, QR Factorization via Gram-Schmidt/Householder reflections, and Singular Value Decomposition (SVD).
+        </p>
+        <div class="tag-cluster">
+          <span class="tag tag-cyan">MATLAB</span>
+          <span class="tag tag-cyan">Scientific Computing</span>
+          <span class="tag">Numerical Linear Algebra</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Stochastic Asset Price Dynamics & Volatility Modeling</h3>
+        <p>
+          Simulated continuous-time financial stochastic processes utilizing Geometric Brownian Motion (GBM) and jump-diffusion models. Analyzed stationary vs. non-stationary properties in market time series, implementing statistical tests (ADF, KPSS) and evaluating historical volatility regimes.
+        </p>
+        <div class="tag-cluster">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas & NumPy</span>
+          <span class="tag tag-pink">Stochastic Calculus</span>
+          <span class="tag tag-cyan">Monte Carlo</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Theoretical Optimization Dynamics in Deep Networks</h3>
+        <p>
+          Analyzing the geometry of high-dimensional non-convex loss surfaces. Investigating how gradient descent trajectories, momentum terms, and learning rate schedules escape saddle points and achieve generalization in deep neural networks.
+        </p>
+        <div class="tag-cluster">
+          <span class="tag tag-pink">Optimization Theory</span>
+          <span class="tag">Loss Surfaces</span>
+          <span class="tag tag-cyan">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PAGE 4: INTERESTS & LIFE ================= -->
+    <div id="page-life" class="page-view">
+      <h2 class="section-title">Interests, Energy & Beyond the Desk</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>🏸 Badminton Court</h3>
+          <p>
+            An active and enthusiastic player. The fast-paced tactical agility, reflex demands, and mental focus required on the court provide the perfect physical counterbalance to rigorous academic sessions.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🎸 Music & Acoustic Jam Sessions</h3>
+          <p>
+            Passionate about acoustic music, harmony structures, and collaborative jam sessions. Exploring rhythm dynamics and acoustic arrangements across genres.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🍳 Culinary Arts & Cooking</h3>
+          <p>
+            Enthusiastic about cooking—treating the kitchen as a creative lab for experimenting with spices, flavors, and exact gastronomic techniques.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🌍 Travel & Exploration</h3>
+          <p>
+            Avid traveler keen on discovering new landscapes, diverse regional cultures, historical architecture, and scenic outdoor trails.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PAGE 5: DEDICATED CONNECT HUB ================= -->
+    <div id="page-connect" class="page-view">
+      <h2 class="section-title">Connect & Direct Channels</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px;">
+        Feel free to reach out for research discussions, quantitative projects, open-source collaborations, or a game of badminton.
+      </p>
+
+      <div class="contact-grid">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/dhruv-goyal-624324302" target="_blank" class="contact-card">
+          <div>
+            <div class="contact-label">Professional Network</div>
+            <div class="contact-value">LinkedIn</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Connect with me professionally and view academic updates.</p>
+          </div>
+          <div class="contact-action">Open Profile &rarr;</div>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/dhruvgoyal-io" target="_blank" class="contact-card">
+          <div>
+            <div class="contact-label">Code Repository</div>
+            <div class="contact-value">GitHub / dhruvgoyal-io</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Explore open-source scripts, MATLAB simulations, and algorithms.</p>
+          </div>
+          <div class="contact-action">View Repositories &rarr;</div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/_dhruv_x_" target="_blank" class="contact-card">
+          <div>
+            <div class="contact-label">Social & Lifestyle</div>
+            <div class="contact-value">@_dhruv_x_</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Follow music jams, badminton, travels, and campus life.</p>
+          </div>
+          <div class="contact-action">Visit Instagram &rarr;</div>
+        </a>
+
+        <!-- IITM S-Mail -->
+        <div class="contact-card" style="cursor: pointer;" onclick="copyText('your-smail-id@smail.iitm.ac.in', 'IITM S-Mail copied!')">
+          <div>
+            <div class="contact-label">Academic Email</div>
+            <div class="contact-value" style="font-size: 0.95rem;">IIT Madras S-Mail</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Click to copy institutional email address for academic correspondence.</p>
+          </div>
+          <div class="contact-action">📋 Click to Copy</div>
+        </div>
+
+        <!-- Personal Email -->
+        <div class="contact-card" style="cursor: pointer;" onclick="copyText('your-personal-email@gmail.com', 'Personal Email copied!')">
+          <div>
+            <div class="contact-label">Direct Inbox</div>
+            <div class="contact-value" style="font-size: 0.95rem;">Personal Mail</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Click to copy personal email for general conversations.</p>
+          </div>
+          <div class="contact-action">📋 Click to Copy</div>
+        </div>
+      </div>
+    </div>
 
     <footer>
-      &copy; 2026 Dhruv Goyal &bull; Hosted on GitHub Pages
+      &copy; 2026 Dhruv Goyal &bull; Indian Institute of Technology Madras &bull; Hosted on GitHub Pages
     </footer>
   </div>
 
+  <div id="copy-toast" class="copy-toast">Copied to clipboard!</div>
+
+  <!-- Interactive Starfield & Logic -->
+  <script>
+    // Tab Page Switcher
+    function switchPage(pageId) {
+      document.querySelectorAll('.page-view').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      const targetPage = document.getElementById('page-' + pageId);
+      if (targetPage) {
+        targetPage.classList.add('active');
+      }
+      
+      event.target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Copy to Clipboard Feedback Toast
+    function copyText(text, message) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.innerText = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      });
+    }
+
+    // Dynamic Space Starfield Canvas
+    const canvas = document.getElementById('space-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      stars = [];
+      for (let i = 0; i < 85; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.6 + 0.4,
+          speed: Math.random() * 0.3 + 0.1,
+          alpha: Math.random() * 0.8 + 0.2,
+          flicker: Math.random() * 0.02 + 0.005
+        });
+      }
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#fff";
+
+      stars.forEach(star => {
+        star.y -= star.speed;
+        if (star.y < 0) {
+          star.y = canvas.height;
+          star.x = Math.random() * canvas.width;
+        }
+        
+        star.alpha += star.flicker;
+        if (star.alpha > 0.95 || star.alpha < 0.2) {
+          star.flicker = -star.flicker;
+        }
+
+        ctx.globalAlpha = Math.max(0, Math.min(1, star.alpha));
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animateStars);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animateStars();
+  </script>
 </body>
 </html>
