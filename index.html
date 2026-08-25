@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dhruv Goyal | IIT Madras</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    section {
+      margin-bottom: 36px;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-align: center;
+      padding: 10px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Dhruv Goyal</h1>
+      <p class="subtitle">Undergraduate in Mathematics @ IIT Madras</p>
+      <p class="meta">Born February 6, 2008 &bull; Chennai, India</p>
+    </header>
+
+    <section>
+      <h2>About Me</h2>
+      <div class="card">
+        <p>
+          I am a first-year undergraduate student pursuing a major in <strong>Mathematics</strong> at the <strong>Indian Institute of Technology Madras (IITM)</strong>. 
+          My primary focus areas lie at the intersection of rigorous mathematical theory, quantitative finance, and artificial intelligence.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Academic & Research Interests</h2>
+      <div class="card">
+        <h3>Quantitative Finance & Modeling</h3>
+        <p>Stochastic calculus, probability theory, algorithmic trading strategies, and statistical modeling for financial markets.</p>
+        <div class="tag-container">
+          <span class="tag">Probability & Statistics</span>
+          <span class="tag">Stochastic Processes</span>
+          <span class="tag">Financial Modeling</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Artificial Intelligence & Machine Learning</h3>
+        <p>Mathematical foundations of deep learning, optimization methods, statistical learning theory, and predictive algorithms.</p>
+        <div class="tag-container">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Optimization</span>
+          <span class="tag">Linear Algebra</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="card">
+        <h3>Indian Institute of Technology Madras</h3>
+        <p>Bachelor of Science (BS / B.Tech) in Mathematics</p>
+        <p class="meta">First Year Undergraduate &bull; Expected 2029</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Connect</h2>
+      <div class="links-grid">
+        <a href="mailto:dhruv@example.com" class="btn">Email Me</a>
+        <a href="https://github.com" target="_blank" class="btn">GitHub Profile</a>
+        <a href="https://linkedin.com" target="_blank" class="btn">LinkedIn Profile</a>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2026 Dhruv Goyal &bull; Hosted on GitHub Pages
+    </footer>
+  </div>
+
+</body>
+</html>
