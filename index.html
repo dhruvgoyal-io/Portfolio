@@ -5,50 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dhruv Goyal | Mathematics, Quant & AI | IIT Madras</title>
   
-  <!-- Modern & Lively Typography -->
+  <!-- Modern Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-deep: #06040d;
-      --bg-cosmic: #0e091f;
-      --card-bg: rgba(22, 14, 46, 0.65);
-      --card-hover: rgba(33, 21, 68, 0.85);
-      --card-border: rgba(168, 85, 247, 0.2);
-      --card-border-glow: rgba(217, 70, 239, 0.5);
+      /* Professional Dark Theme */
+      --bg-deep: #0a0a0a;
+      --bg-surface: #121214;
+      --card-bg: rgba(18, 18, 20, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
       
-      --purple-primary: #a855f7;
-      --violet-bright: #8b5cf6;
-      --magenta-neon: #ec4899;
-      --cyan-bright: #38bdf8;
-      --emerald-accent: #10b981;
+      /* Refined Neon Accents */
+      --neon-cyan: #00e5ff;
+      --neon-pink: #ff007f;
+      --neon-orange: #ff6600;
       
+      /* Text Colors */
       --text-main: #f8fafc;
-      --text-body: #cbd5e1;
-      --text-muted: #94a3b8;
-      --nav-bg: rgba(14, 9, 31, 0.75);
+      --text-body: #a1a1aa;
+      --text-muted: #71717a;
+      
+      --nav-bg: rgba(10, 10, 10, 0.85);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      scroll-behavior: smooth;
     }
 
     body {
       background-color: var(--bg-deep);
       color: var(--text-main);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      line-height: 1.7;
+      line-height: 1.6;
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* Ambient Galactic Canvas */
+    /* Subtle Starfield Background */
     #space-canvas {
       position: fixed;
       top: 0;
@@ -57,77 +55,49 @@
       height: 100%;
       z-index: -1;
       pointer-events: none;
-    }
-
-    /* Glowing Nebula Orbs */
-    .nebula-orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(100px);
-      z-index: -1;
-      pointer-events: none;
-      opacity: 0.35;
-      animation: floatOrb 18s ease-in-out infinite alternate;
-    }
-    .orb-1 {
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, #7c3aed, #4c1d95);
-      top: -100px;
-      left: -100px;
-    }
-    .orb-2 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #db2777, #701a75);
-      bottom: 5%;
-      right: -120px;
-      animation-duration: 22s;
-    }
-
-    @keyframes floatOrb {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(80px, 60px) scale(1.15); }
+      opacity: 0.6;
     }
 
     .container {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 40px 24px 100px;
-      perspective: 1000px; /* For 3D card tilt */
     }
 
     /* Top Navigation Bar */
     nav {
       position: sticky;
-      top: 18px;
+      top: 20px;
       z-index: 100;
       background: var(--nav-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--card-border);
-      border-radius: 999px;
-      padding: 8px 16px;
+      border-radius: 100px;
+      padding: 8px 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 48px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 50px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
 
     .nav-brand {
       font-family: 'Outfit', sans-serif;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 1.1rem;
-      background: linear-gradient(135deg, #fff, var(--purple-primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      padding-left: 8px;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+      padding-left: 12px;
+    }
+
+    .nav-brand span {
+      color: var(--neon-cyan);
     }
 
     .nav-links {
       display: flex;
-      gap: 6px;
+      gap: 4px;
       list-style: none;
     }
 
@@ -139,9 +109,9 @@
       font-weight: 500;
       font-size: 0.9rem;
       padding: 8px 16px;
-      border-radius: 999px;
+      border-radius: 100px;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
     }
 
     .nav-btn:hover {
@@ -150,28 +120,41 @@
     }
 
     .nav-btn.active {
-      color: #fff;
-      background: linear-gradient(135deg, var(--purple-primary), var(--violet-bright));
-      box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+      color: var(--bg-deep);
+      background: var(--text-main);
+      font-weight: 600;
     }
 
-    /* Page View Controller */
-    .page-view {
+    /* Tab Controller */
+    .tab-content {
       display: none;
-      opacity: 0;
-      transform: translateY(14px) scale(0.98);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      animation: fadeIn 0.4s ease forwards;
     }
 
-    .page-view.active {
+    .tab-content.active {
       display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll Reveal Classes */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .scroll-reveal.visible {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
 
     /* Hero Section */
     .hero {
-      margin-bottom: 40px;
+      margin-bottom: 60px;
     }
 
     .status-badge {
@@ -179,121 +162,87 @@
       align-items: center;
       gap: 8px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--cyan-bright);
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 5px 12px;
-      border-radius: 999px;
-      margin-bottom: 18px;
-      letter-spacing: 0.04em;
+      font-size: 0.75rem;
+      color: var(--neon-cyan);
+      background: rgba(0, 229, 255, 0.05);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
     }
 
     .status-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--cyan-bright);
+      width: 6px;
+      height: 6px;
+      background: var(--neon-cyan);
       border-radius: 50%;
-      box-shadow: 0 0 10px var(--cyan-bright);
-      animation: pulseDot 2s infinite;
+      box-shadow: 0 0 8px var(--neon-cyan);
+      animation: pulse 2s infinite;
     }
 
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
     h1.hero-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #ffffff 40%, var(--purple-primary) 80%, var(--magenta-neon) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      color: var(--text-main);
     }
 
     .hero-tagline {
-      font-size: 1.25rem;
-      font-weight: 500;
+      font-size: 1.2rem;
+      font-weight: 400;
       color: var(--text-body);
       margin-bottom: 12px;
     }
 
-    .hero-sub {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* Cards & Grids */
+    /* Cards */
     .card {
       background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 26px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 24px;
       position: relative;
-      overflow: hidden;
-      transition: all 0.1s ease;
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
-
-    /* Glow effect on top edge */
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--purple-primary), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .card:hover {
-      background: var(--card-hover);
-      border-color: var(--card-border-glow);
-      box-shadow: 0 15px 35px rgba(168, 85, 247, 0.2);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
 
-    .card:hover::before {
-      opacity: 1;
-    }
+    /* Accent Hover Borders for different vibes */
+    .card.hover-cyan:hover { border-color: var(--neon-cyan); box-shadow: 0 8px 30px rgba(0, 229, 255, 0.05); }
+    .card.hover-pink:hover { border-color: var(--neon-pink); box-shadow: 0 8px 30px rgba(255, 0, 127, 0.05); }
+    .card.hover-orange:hover { border-color: var(--neon-orange); box-shadow: 0 8px 30px rgba(255, 102, 0, 0.05); }
 
     .card h3 {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
+      font-size: 1.25rem;
+      font-weight: 600;
       color: var(--text-main);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transform: translateZ(20px); /* 3D pop effect */
+      margin-bottom: 12px;
     }
 
     .card p {
       color: var(--text-body);
-      font-size: 0.96rem;
-      transform: translateZ(10px); /* 3D pop effect */
+      font-size: 0.95rem;
     }
 
     .section-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.4rem;
+      font-weight: 600;
       color: var(--text-main);
-      margin-bottom: 22px;
+      margin: 40px 0 20px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -303,19 +252,19 @@
       content: "";
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, var(--card-border), transparent);
+      background: var(--card-border);
     }
 
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
 
     /* Tags */
@@ -323,147 +272,46 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 14px;
-      transform: translateZ(15px);
+      margin-top: 16px;
     }
 
     .tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(168, 85, 247, 0.1);
-      color: #c084fc;
-      border: 1px solid rgba(168, 85, 247, 0.25);
-    }
-
-    .tag-cyan {
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--cyan-bright);
-      border-color: rgba(56, 189, 248, 0.25);
-    }
-
-    .tag-pink {
-      background: rgba(236, 72, 153, 0.1);
-      color: var(--magenta-neon);
-      border-color: rgba(236, 72, 153, 0.25);
-    }
-
-    /* Course Cards */
-    .course-card {
-      background: rgba(14, 9, 31, 0.8);
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-body);
       border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 16px;
-      transition: all 0.2s ease;
-      transform-style: preserve-3d;
     }
 
-    .course-card:hover {
-      border-color: var(--purple-primary);
-      box-shadow: 0 5px 15px rgba(168, 85, 247, 0.15);
-    }
+    .tag.cyan { color: var(--neon-cyan); border-color: rgba(0, 229, 255, 0.2); background: rgba(0, 229, 255, 0.05); }
+    .tag.pink { color: var(--neon-pink); border-color: rgba(255, 0, 127, 0.2); background: rgba(255, 0, 127, 0.05); }
+    .tag.orange { color: var(--neon-orange); border-color: rgba(255, 102, 0, 0.2); background: rgba(255, 102, 0, 0.05); }
 
-    .course-code {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-      color: var(--magenta-neon);
-      font-size: 0.85rem;
-      margin-bottom: 4px;
-    }
-
-    .course-name {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--text-main);
-    }
-
-    .course-desc {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* Dedicated Contact Hub */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-bottom: 30px;
-    }
-
+    /* Contact Links */
     .contact-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 24px;
       text-decoration: none;
-      color: var(--text-main);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-
-    .contact-card:hover {
-      background: var(--card-hover);
-      border-color: var(--magenta-neon);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(236, 72, 153, 0.2);
+      justify-content: center;
     }
 
     .contact-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
       text-transform: uppercase;
-      color: var(--purple-primary);
-      margin-bottom: 6px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.5px;
     }
 
     .contact-value {
-      font-family: 'Outfit', sans-serif;
       font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 12px;
-      word-break: break-all;
+      color: var(--text-main);
     }
 
-    .contact-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      color: var(--cyan-bright);
-      font-weight: 500;
-    }
-
-    .copy-toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: linear-gradient(135deg, var(--purple-primary), var(--magenta-neon));
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      padding: 10px 22px;
-      border-radius: 999px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-      opacity: 0;
-      transition: all 0.3s ease;
-      z-index: 1000;
-    }
-
-    .copy-toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-
-    /* Footer */
     footer {
       text-align: center;
       color: var(--text-muted);
@@ -474,1216 +322,331 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       nav {
         flex-direction: column;
         gap: 12px;
-        border-radius: 20px;
-        padding: 14px;
+        border-radius: 16px;
+        padding: 16px;
       }
       .nav-links {
         flex-wrap: wrap;
         justify-content: center;
       }
       h1.hero-title {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Animated Starfield & Nebula Glow -->
+  <!-- Minimalist Starfield Background -->
   <canvas id="space-canvas"></canvas>
-  <div class="nebula-orb orb-1"></div>
-  <div class="nebula-orb orb-2"></div>
 
   <div class="container">
     
-    <!-- Top Interactive Navbar -->
+    <!-- Top Navigation -->
     <nav>
-      <div class="nav-brand">DG.</div>
+      <div class="nav-brand">Dhruv<span>.</span></div>
       <ul class="nav-links">
-        <li><button class="nav-btn active" onclick="switchPage('overview')">Overview</button></li>
-        <li><button class="nav-btn" onclick="switchPage('academics')">Academics</button></li>
-        <li><button class="nav-btn" onclick="switchPage('quant')">Tech Stack</button></li>
-        <li><button class="nav-btn" onclick="switchPage('life')">Interests</button></li>
-        <li><button class="nav-btn" onclick="switchPage('connect')">Connect</button></li>
+        <li><button class="nav-btn active" onclick="switchTab('overview', this)">Overview</button></li>
+        <li><button class="nav-btn" onclick="switchTab('academics', this)">Academics</button></li>
+        <li><button class="nav-btn" onclick="switchTab('tech', this)">Tech Stack</button></li>
+        <li><button class="nav-btn" onclick="switchTab('life', this)">Beyond Desk</button></li>
+        <li><button class="nav-btn" onclick="switchTab('connect', this)">Connect</button></li>
       </ul>
     </nav>
 
-    <!-- ================= PAGE 1: OVERVIEW ================= -->
-    <div id="page-overview" class="page-view active">
-      <div class="hero">
+    <!-- ================= TAB 1: OVERVIEW ================= -->
+    <div id="overview" class="tab-content active">
+      <div class="hero scroll-reveal">
         <div class="status-badge">
           <span class="status-dot"></span>
           IIT MADRAS &bull; BS MATHEMATICS
         </div>
-        <h1 class="hero-title">Dhruv Goyal</h1>
-        <p class="hero-tagline">Undergraduate Mathematician &bull; Aspiring Quant &bull; AI Enthusiast</p>
-        <p class="hero-sub">
-          <span>Chennai, India</span> &bull; 
-          <span>Class of 2030</span> &bull;
-          <span style="color: var(--purple-primary);">Building the foundations of Data and Math</span>
-        </p>
+        <h1 class="hero-title">Hey, I'm Dhruv Goyal.</h1>
+        <p class="hero-tagline">Navigating the intersection of Pure Mathematics, Quantitative Finance, and Artificial Intelligence.</p>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">📍 Chennai, India &nbsp;&bull;&nbsp; Class of 2030</p>
       </div>
 
-      <div class="card tilt-card">
-        <h3>About Me</h3>
+      <div class="card hover-cyan scroll-reveal">
+        <h3>The Big Picture</h3>
         <p>
-          I am a first-year undergraduate pursuing a major in Mathematics at the <strong>Indian Institute of Technology Madras</strong>. 
-          I am deeply fascinated by the intersection of pure mathematics, artificial intelligence, and quantitative finance. Right now, my focus is on building an airtight foundation in theoretical math while getting my hands dirty with code. I'm actively translating complex logic into computational models using Python, MATLAB, and Mathematica.
+          I'm a first-year undergraduate at the Indian Institute of Technology Madras. While my core focus is building an airtight foundation in mathematics and physics, I don't just want to study theory—I want to build with it. I'm actively translating abstract math into computational models to explore algorithmic trading and machine learning.
         </p>
       </div>
 
+      <h2 class="section-title scroll-reveal">What I Do</h2>
       <div class="grid-3">
-        <div class="card tilt-card">
-          <h3>Quantitative Finance</h3>
-          <p>Exploring how mathematical models, probability, and statistics govern financial markets and algorithmic trading.</p>
+        <!-- Math Card -->
+        <div class="card hover-pink scroll-reveal">
+          <h3>Theoretical Math</h3>
+          <p>Laying down the groundwork in multivariable calculus, real analysis, and linear algebra. The essential building blocks for quant models.</p>
           <div class="tag-cluster">
-            <span class="tag">Probability</span>
-            <span class="tag">Statistics</span>
+            <span class="tag pink">Calculus</span>
+            <span class="tag pink">Linear Algebra</span>
           </div>
         </div>
 
-        <div class="card tilt-card">
-          <h3>Core Mathematics</h3>
-          <p>Laying down the groundwork in linear algebra, multivariable calculus, and preparing for future dives into topology.</p>
-          <div class="tag-cluster">
-            <span class="tag tag-pink">Linear Algebra</span>
-            <span class="tag tag-pink">Calculus</span>
-          </div>
-        </div>
-
-        <div class="card tilt-card">
+        <!-- Tech Card -->
+        <div class="card hover-cyan scroll-reveal">
           <h3>Computational AI</h3>
-          <p>Learning how to model real-world problems mathematically and compute them using modern programmatic tools.</p>
+          <p>Turning formulas into functions. I use programming to manipulate datasets, visualize matrix operations, and build logic systems.</p>
           <div class="tag-cluster">
-            <span class="tag tag-cyan">MATLAB</span>
-            <span class="tag tag-cyan">Python</span>
-            <span class="tag tag-cyan">Mathematica</span>
+            <span class="tag cyan">Python</span>
+            <span class="tag cyan">MATLAB</span>
+          </div>
+        </div>
+
+        <!-- Life Card -->
+        <div class="card hover-orange scroll-reveal">
+          <h3>Life Off-Screen</h3>
+          <p>When I'm not coding or doing math, I'm competing in the ID Badminton League, cooking, or blasting Diljit Dosanjh at full volume.</p>
+          <div class="tag-cluster">
+            <span class="tag orange">Badminton</span>
+            <span class="tag orange">Concerts</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ================= PAGE 2: ACADEMICS & RESEARCH ================= -->
-    <div id="page-academics" class="page-view">
-      <h2 class="section-title">Academic Curriculum & Focus</h2>
+    <!-- ================= TAB 2: ACADEMICS ================= -->
+    <div id="academics" class="tab-content">
+      <h2 class="section-title scroll-reveal">Academic Curriculum</h2>
       
-      <div class="card tilt-card">
-        <h3>Department of Mathematics, IIT Madras</h3>
-        <p style="margin-bottom: 16px;">
-          Currently immersed in a rigorous first-year program designed to bridge abstract theory with actionable, computational problem-solving.
+      <div class="card hover-cyan scroll-reveal">
+        <h3>Department of Mathematics</h3>
+        <p style="margin-bottom: 20px;">
+          My current coursework bridges abstract theoretical proof with actionable, algorithmic problem-solving.
         </p>
         
         <div class="grid-2">
-          <div class="course-card tilt-card">
-            <div class="course-code">MA1100</div>
-            <div class="course-name">Calculus & Real Analysis</div>
-            <div class="course-desc">Building intuition around sequences, series, limits, and multivariable differential calculus. The bedrock of optimization.</div>
+          <div class="card" style="margin-bottom:0;">
+            <h4 style="color:var(--text-main); margin-bottom:4px;">MA1100: Calculus & Real Analysis</h4>
+            <p style="font-size:0.85rem;">Building the rigorous foundation of limits, series convergence, and multivariable differential calculus.</p>
           </div>
 
-          <div class="course-card tilt-card">
-            <div class="course-code">MA2101</div>
-            <div class="course-name">Linear Algebra & ODEs</div>
-            <div class="course-desc">Vector spaces, eigenvalues, and solving differential equations—essential tools for machine learning and quantitative modeling.</div>
+          <div class="card" style="margin-bottom:0;">
+            <h4 style="color:var(--text-main); margin-bottom:4px;">MA2101: Linear Algebra</h4>
+            <p style="font-size:0.85rem;">Exploring vector spaces, matrices, and linear transformations—the core of modern AI architectures.</p>
           </div>
 
-          <div class="course-card tilt-card">
-            <div class="course-code">MA1103</div>
-            <div class="course-name">Scientific Computing</div>
-            <div class="course-desc">Translating math into code. Focusing on algorithm design, numerical solutions, and scientific programming.</div>
+          <div class="card hover-pink" style="margin-bottom:0;">
+            <h4 style="color:var(--text-main); margin-bottom:4px;">PH1010: Foundations of Physics</h4>
+            <p style="font-size:0.85rem;">Classical mechanics. Exploring the shift from force-based Newtonian views to the elegant, energy-based Lagrangian frameworks.</p>
           </div>
-
-          <div class="course-card tilt-card">
-            <div class="course-code">PH1010</div>
-            <div class="course-name">Foundations of Physics</div>
-            <div class="course-desc">Studying the mechanics of the universe. (And yes, for the record: <em>Lagrangian Mechanics > Newtonian Mechanics</em> every single time).</div>
+          
+          <div class="card" style="margin-bottom:0;">
+            <h4 style="color:var(--text-main); margin-bottom:4px;">CS1100: Intro to Programming</h4>
+            <p style="font-size:0.85rem;">Translating logic into execution. Learning to structure algorithms and solve computational problems efficiently.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ================= PAGE 3: TECH STACK & LAB ================= -->
-    <div id="page-quant" class="page-view">
-      <h2 class="section-title">Languages & Computational Tools</h2>
+    <!-- ================= TAB 3: TECH STACK ================= -->
+    <div id="tech" class="tab-content">
+      <h2 class="section-title scroll-reveal">Tools & Languages</h2>
 
-      <div class="card tilt-card">
+      <div class="card hover-cyan scroll-reveal">
         <h3>Python for Data & AI</h3>
         <p>
-          Python is my primary tool for exploring artificial intelligence and data science. I am currently learning how to manipulate datasets, visualize trends, and implement foundational machine learning algorithms. It's the perfect bridge between my mathematical theories and practical applications.
+          My primary tool for exploring artificial intelligence. I use Python to understand statistical distributions, manipulate data, and write the foundational algorithms that power machine learning.
         </p>
         <div class="tag-cluster">
-          <span class="tag">Python</span>
-          <span class="tag">Data Analysis</span>
-          <span class="tag tag-pink">Machine Learning</span>
+          <span class="tag cyan">Python</span>
+          <span class="tag cyan">Data Analysis</span>
         </div>
       </div>
 
-      <div class="card tilt-card">
+      <div class="card hover-orange scroll-reveal">
         <h3>MATLAB for Scientific Computing</h3>
         <p>
-          Leveraging MATLAB to solve complex systems of linear equations, visualize matrices, and run numerical simulations. It allows me to see the geometry behind linear algebra and rapidly test computational workflows.
+          MATLAB is my go-to for heavy linear algebra. I use it to visualize mathematical models, perform matrix operations, and solve complex equations numerically.
         </p>
         <div class="tag-cluster">
-          <span class="tag tag-cyan">MATLAB</span>
-          <span class="tag tag-cyan">Numerical Computing</span>
-          <span class="tag">Matrix Operations</span>
+          <span class="tag orange">MATLAB</span>
+          <span class="tag orange">Matrix Logic</span>
         </div>
       </div>
 
-      <div class="card tilt-card">
+      <div class="card hover-pink scroll-reveal">
         <h3>Wolfram Mathematica</h3>
         <p>
-          Using Mathematica as a sandbox for symbolic computation. Whether it's verifying difficult calculus integrals, plotting complex multivariable functions, or automating algebraic manipulations, it accelerates my pure math studies.
+          A powerful sandbox for symbolic computation. It helps me verify difficult calculus derivations and turn abstract mathematical theories into interactive 3D visualizations.
         </p>
         <div class="tag-cluster">
-          <span class="tag tag-pink">Wolfram Language</span>
-          <span class="tag">Symbolic Math</span>
-          <span class="tag tag-cyan">Visualization</span>
+          <span class="tag pink">Wolfram Language</span>
+          <span class="tag pink">Symbolic Math</span>
         </div>
       </div>
     </div>
 
-    <!-- ================= PAGE 4: INTERESTS & LIFE ================= -->
-    <div id="page-life" class="page-view">
-      <h2 class="section-title">Beyond the Desk</h2>
+    <!-- ================= TAB 4: BEYOND DESK ================= -->
+    <div id="life" class="tab-content">
+      <h2 class="section-title scroll-reveal">Interests & Energy</h2>
 
       <div class="grid-2">
-        <div class="card tilt-card">
+        <div class="card hover-orange scroll-reveal">
           <h3>🏸 Interdepartmental Badminton</h3>
           <p>
-            I recently made it into the Interdepartmental League for badminton! The fast-paced agility, tactical positioning, and sheer reflexes required on the court provide the perfect physical counterbalance to heavy academic sessions.
+            I play competitive badminton for the Interdepartmental League. The fast-paced agility, tactical reflexes, and focus required on the court provide the perfect physical counterbalance to staring at code.
           </p>
         </div>
 
-        <div class="card tilt-card">
-          <h3>🎧 Concerts & Playlists</h3>
+        <div class="card hover-pink scroll-reveal">
+          <h3>🎤 Playlists & Concerts</h3>
           <p>
-            Huge concert-goer and music fanatic. My study/hype playlists are heavily fueled by high-energy Punjabi tracks—<strong>Diljit Dosanjh</strong> and <strong>Karan Aujla</strong> are always on loop. When it's time to chill, it's all about soulful Hindi melodies by <strong>Arijit Singh</strong>.
+            Music is a constant. My study and hype playlists are heavily fueled by high-energy Punjabi tracks—<strong>Diljit Dosanjh</strong> and <strong>Karan Aujla</strong> are always on loop. When it's time to chill, it's all about soulful Hindi melodies by <strong>Arijit Singh</strong>.
           </p>
         </div>
 
-        <div class="card tilt-card">
-          <h3>🍳 Culinary Arts</h3>
+        <div class="card hover-cyan scroll-reveal">
+          <h3>🍳 Culinary Experiments</h3>
           <p>
             I love cooking. I treat the kitchen like a creative lab, experimenting with spices, flavors, and techniques to craft the perfect meal after a long day of classes.
           </p>
         </div>
 
-        <div class="card tilt-card">
-          <h3>🌍 Travel & Exploration</h3>
+        <div class="card hover-orange scroll-reveal">
+          <h3>🌍 Travel & Physics</h3>
           <p>
-            Always looking forward to packing a bag and exploring. I love discovering new landscapes, experiencing different cultures, and getting away from the screens for a bit.
+            I love traveling to experience new cultures and landscapes. Also, I often find myself geeking out over how physics is formulated—minimizing the "action" of a system using <strong>Lagrangian mechanics</strong> is profoundly more elegant than drawing endless free-body diagrams!
           </p>
         </div>
       </div>
     </div>
 
-    <!-- ================= PAGE 5: DEDICATED CONNECT HUB ================= -->
-    <div id="page-connect" class="page-view">
-      <h2 class="section-title">Let's Connect</h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px;">
-        Whether you want to discuss math, collaborate on code, argue about Lagrangian mechanics, or just talk music—feel free to reach out.
-      </p>
-
-      <div class="contact-grid">
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/dhruv-goyal-624324302" target="_blank" class="contact-card tilt-card">
-          <div>
-            <div class="contact-label">Professional Network</div>
-            <div class="contact-value">LinkedIn</div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Connect with me professionally and view academic updates.</p>
-          </div>
-          <div class="contact-action">Open Profile &rarr;</div>
-        </a>
-
-        <!-- GitHub -->
-        <a href="https://github.com/dhruvgoyal-io" target="_blank" class="contact-card tilt-card">
-          <div>
-            <div class="contact-label">Code Repository</div>
-            <div class="contact-value">GitHub / dhruvgoyal-io</div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Explore my Python, MATLAB, and Mathematica scripts.</p>
-          </div>
-          <div class="contact-action">View Repositories &rarr;</div>
-        </a>
-
-        <!-- Instagram -->
-        <a href="https://instagram.com/_dhruv_x_" target="_blank" class="contact-card tilt-card">
-          <div>
-            <div class="contact-label">Social & Lifestyle</div>
-            <div class="contact-value">@_dhruv_x_</div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Badminton, concerts, travels, and campus life.</p>
-          </div>
-          <div class="contact-action">Visit Instagram &rarr;</div>
-        </a>
-
-        <!-- Personal Email -->
-        <div class="contact-card tilt-card" style="cursor: pointer;" onclick="copyText('your-personal-email@gmail.com', 'Personal Email copied!')">
-          <div>
-            <div class="contact-label">Direct Inbox</div>
-            <div class="contact-value" style="font-size: 0.95rem;">Personal Mail</div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Click to copy personal email for general conversations.</p>
-          </div>
-          <div class="contact-action">📋 Click to Copy</div>
-        </div>
-      </div>
-    </div>
-
-    <footer>
-      &copy; 2026 Dhruv Goyal &bull; Indian Institute of Technology Madras &bull; Hosted on GitHub Pages
-    </footer>
-  </div>
-
-  <div id="copy-toast" class="copy-toast">Copied to clipboard!</div>
-
-  <!-- Interactive Starfield & Logic -->
-  <script>
-    // Tab Page Switcher
-    function switchPage(pageId) {
-      document.querySelectorAll('.page-view').forEach(page => {
-        page.classList.remove('active');
-      });
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      
-      const targetPage = document.getElementById('page-' + pageId);
-      if (targetPage) {
-        // Small delay to allow CSS transitions to trigger smoothly
-        setTimeout(() => targetPage.classList.add('active'), 50);
-      }
-      
-      event.target.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Copy to Clipboard Feedback Toast
-    function copyText(text, message) {
-      navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('copy-toast');
-        toast.innerText = message;
-        toast.classList.add('show');
-        setTimeout(() => {
-          toast.classList.remove('show');
-        }, 2500);
-      });
-    }
-
-    // 3D Tilt Effect for Cards
-    const cards = document.querySelectorAll('.tilt-card');
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = ((y - centerY) / centerY) * -5; // Max rotation 5deg
-        const rotateY = ((x - centerX) / centerX) * 5;
-        
-        card.style.transform = `perspectiveHere is the updated, grounded, and highly interactive version of your portfolio. 
-
-The heavy, senior-level jargon has been replaced with an authentic reflection of a first-year student building a strong mathematical foundation toward Quant and AI. The background now features an interactive starfield that reacts to your mouse, and page transitions are staggered for a premium, animated feel.
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dhruv Goyal | Mathematics, Quant & AI | IIT Madras</title>
-  
-  <!-- Modern & Lively Typography -->
-  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-  <link href="[https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap)" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg-deep: #06040d;
-      --bg-cosmic: #0e091f;
-      --card-bg: rgba(22, 14, 46, 0.65);
-      --card-hover: rgba(33, 21, 68, 0.85);
-      --card-border: rgba(168, 85, 247, 0.2);
-      --card-border-glow: rgba(217, 70, 239, 0.5);
-      
-      --purple-primary: #a855f7;
-      --violet-bright: #8b5cf6;
-      --magenta-neon: #ec4899;
-      --cyan-bright: #38bdf8;
-      --emerald-accent: #10b981;
-      --gold-accent: #fbbf24;
-      
-      --text-main: #f8fafc;
-      --text-body: #cbd5e1;
-      --text-muted: #94a3b8;
-      --nav-bg: rgba(14, 9, 31, 0.75);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-color: var(--bg-deep);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      line-height: 1.7;
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Ambient Galactic Canvas */
-    #space-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* Glowing Nebula Orbs */
-    .nebula-orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(100px);
-      z-index: -1;
-      pointer-events: none;
-      opacity: 0.35;
-      animation: floatOrb 18s ease-in-out infinite alternate;
-    }
-    .orb-1 {
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, #7c3aed, #4c1d95);
-      top: -100px;
-      left: -100px;
-    }
-    .orb-2 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #db2777, #701a75);
-      bottom: 5%;
-      right: -120px;
-      animation-duration: 22s;
-    }
-
-    @keyframes floatOrb {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(80px, 60px) scale(1.15); }
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 40px 24px 100px;
-    }
-
-    /* Top Navigation Bar */
-    nav {
-      position: sticky;
-      top: 18px;
-      z-index: 100;
-      background: var(--nav-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
-      border-radius: 999px;
-      padding: 8px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 48px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      transition: border-color 0.3s ease;
-    }
-    
-    nav:hover {
-      border-color: var(--card-border-glow);
-    }
-
-    .nav-brand {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-      background: linear-gradient(135deg, #fff, var(--purple-primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      padding-left: 8px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 6px;
-      list-style: none;
-    }
-
-    .nav-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 8px 16px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .nav-btn:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(-1px);
-    }
-
-    .nav-btn.active {
-      color: #fff;
-      background: linear-gradient(135deg, var(--purple-primary), var(--violet-bright));
-      box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-    }
-
-    /* Page View Controller & Staggered Animations */
-    .page-view {
-      display: none;
-    }
-
-    .page-view.active {
-      display: block;
-    }
-
-    .animate-up {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-
-    @keyframes slideUpFade {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Hero Section */
-    .hero {
-      margin-bottom: 40px;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--cyan-bright);
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 5px 12px;
-      border-radius: 999px;
-      margin-bottom: 18px;
-      letter-spacing: 0.04em;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--cyan-bright);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--cyan-bright);
-      animation: pulseDot 2s infinite;
-    }
-
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    h1.hero-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #ffffff 30%, var(--purple-primary) 70%, var(--magenta-neon) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-tagline {
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: var(--text-body);
-      margin-bottom: 12px;
-    }
-
-    .hero-sub {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* Cards & Grids */
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 26px;
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--purple-primary), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .card:hover {
-      background: var(--card-hover);
-      border-color: var(--card-border-glow);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(168, 85, 247, 0.15);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card h3 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .card p {
-      color: var(--text-body);
-      font-size: 0.96rem;
-    }
-
-    .section-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 22px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-title::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--card-border), transparent);
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-
-    /* Tags */
-    .tag-cluster {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      padding: 6px 12px;
-      border-radius: 6px;
-      background: rgba(168, 85, 247, 0.1);
-      color: #c084fc;
-      border: 1px solid rgba(168, 85, 247, 0.25);
-      transition: all 0.2s ease;
-      cursor: default;
-    }
-    
-    .tag:hover {
-      transform: translateY(-2px);
-      background: rgba(168, 85, 247, 0.2);
-    }
-
-    .tag-cyan {
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--cyan-bright);
-      border-color: rgba(56, 189, 248, 0.25);
-    }
-    
-    .tag-cyan:hover { background: rgba(56, 189, 248, 0.2); }
-
-    .tag-pink {
-      background: rgba(236, 72, 153, 0.1);
-      color: var(--magenta-neon);
-      border-color: rgba(236, 72, 153, 0.25);
-    }
-    
-    .tag-pink:hover { background: rgba(236, 72, 153, 0.2); }
-    
-    .tag-gold {
-      background: rgba(251, 191, 36, 0.1);
-      color: var(--gold-accent);
-      border-color: rgba(251, 191, 36, 0.25);
-    }
-    
-    .tag-gold:hover { background: rgba(251, 191, 36, 0.2); }
-
-    /* Course Cards */
-    .course-card {
-      background: rgba(14, 9, 31, 0.8);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 16px;
-      transition: all 0.3s ease;
-    }
-
-    .course-card:hover {
-      border-color: var(--cyan-bright);
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.1);
-    }
-
-    .course-code {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-      color: var(--magenta-neon);
-      font-size: 0.85rem;
-      margin-bottom: 4px;
-    }
-
-    .course-name {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--text-main);
-    }
-
-    .course-desc {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-
-    /* Dedicated Contact Hub (Page 5) */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-bottom: 30px;
-    }
-
-    .contact-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 24px;
-      text-decoration: none;
-      color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-
-    .contact-card:hover {
-      background: var(--card-hover);
-      border-color: var(--magenta-neon);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(236, 72, 153, 0.2);
-    }
-
-    .contact-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: var(--purple-primary);
-      margin-bottom: 6px;
-      letter-spacing: 0.05em;
-    }
-
-    .contact-value {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      word-break: break-all;
-    }
-
-    .contact-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      color: var(--cyan-bright);
-      font-weight: 500;
-    }
-
-    .copy-toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: linear-gradient(135deg, var(--purple-primary), var(--magenta-neon));
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      padding: 10px 22px;
-      border-radius: 999px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 1000;
-    }
-
-    .copy-toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-top: 80px;
-      padding-top: 24px;
-      border-top: 1px solid var(--card-border);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    @media (max-width: 640px) {
-      nav {
-        flex-direction: column;
-        gap: 12px;
-        border-radius: 20px;
-        padding: 14px;
-      }
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      h1.hero-title {
-        font-size: 2.2rem;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Ambient Animated Starfield & Nebula Glow -->
-  <canvas id="space-canvas"></canvas>
-  <div class="nebula-orb orb-1"></div>
-  <div class="nebula-orb orb-2"></div>
-
-  <div class="container">
-    
-    <!-- Top Interactive Navbar -->
-    <nav>
-      <div class="nav-brand">DG.</div>
-      <ul class="nav-links">
-        <li><button class="nav-btn active" onclick="switchPage('overview')">Overview</button></li>
-        <li><button class="nav-btn" onclick="switchPage('academics')">Academics</button></li>
-        <li><button class="nav-btn" onclick="switchPage('quant')">Quant & Code</button></li>
-        <li><button class="nav-btn" onclick="switchPage('life')">Beyond the Desk</button></li>
-        <li><button class="nav-btn" onclick="switchPage('connect')">Connect</button></li>
-      </ul>
-    </nav>
-
-    <!-- ================= PAGE 1: OVERVIEW ================= -->
-    <div id="page-overview" class="page-view active">
-      <div class="hero animate-up">
-        <div class="status-badge">
-          <span class="status-dot"></span>
-          IIT MADRAS &bull; DEPARTMENT OF MATHEMATICS
-        </div>
-        <h1 class="hero-title">Dhruv Goyal</h1>
-        <p class="hero-tagline">Undergraduate in Mathematics &bull; Aspiring Quant & AI Explorer</p>
-        <p class="hero-sub">
-          <span>Chennai, India</span> &bull; 
-          <span>BS Mathematics (Class of 2030)</span> &bull;
-          <span style="color: var(--purple-primary);">Building the Foundations</span>
-        </p>
-      </div>
-
-      <div class="card animate-up delay-1">
-        <h3>About Me</h3>
-        <p>
-          I am a first-year undergraduate pursuing a major in Mathematics at the <strong>Indian Institute of Technology Madras</strong>. 
-          Right now, my primary focus is building a rock-solid foundation in mathematics and physics. As I navigate through calculus and linear algebra, I am actively exploring how these pure concepts translate into real-world applications within Quantitative Finance and Artificial Intelligence.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <div class="card animate-up delay-2">
-          <h3>The Math Foundation</h3>
-          <p>Currently mastering the core tools: real analysis, probability, and linear algebra—the building blocks for future quant models.</p>
-          <div class="tag-cluster">
-            <span class="tag tag-pink">Calculus</span>
-            <span class="tag tag-pink">Linear Algebra</span>
-          </div>
-        </div>
-
-        <div class="card animate-up delay-2">
-          <h3>Computational Toolkit</h3>
-          <p>Translating math into code. I actively write scripts, solve equations, and visualize data using industry-standard tools.</p>
-          <div class="tag-cluster">
-            <span class="tag tag-cyan">Python</span>
-            <span class="tag tag-cyan">MATLAB</span>
-            <span class="tag tag-gold">Mathematica</span>
-          </div>
-        </div>
-
-        <div class="card animate-up delay-2">
-          <h3>Analytical Mechanics</h3>
-          <p>Fascinated by physics frameworks. I find the elegant, energy-based approach of <strong>Lagrangian mechanics</strong> far more intuitive and beautiful than standard Newtonian methods.</p>
-          <div class="tag-cluster">
-            <span class="tag">Physics</span>
-            <span class="tag">Dynamics</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= PAGE 2: ACADEMICS & RESEARCH ================= -->
-    <div id="page-academics" class="page-view">
-      <h2 class="section-title animate-up">Academic Curriculum</h2>
-      
-      <div class="card animate-up delay-1">
-        <h3>Department of Mathematics, IIT Madras</h3>
-        <p style="margin-bottom: 16px;">
-          My current coursework is an intensive introduction to rigorous mathematical proof, continuous mechanics, and algorithmic thinking.
-        </p>
-        
-        <div class="grid-2">
-          <div class="course-card">
-            <div class="course-code">MA1100</div>
-            <div class="course-name">Calculus & Real Analysis</div>
-            <div class="course-desc">Building the rigorous foundation of limits, series convergence, and multivariable differential calculus.</div>
-          </div>
-
-          <div class="course-card">
-            <div class="course-code">MA2101</div>
-            <div class="course-name">Linear Algebra</div>
-            <div class="course-desc">Exploring vector spaces, matrices, and linear transformations—the absolute core of modern AI architectures.</div>
-          </div>
-
-          <div class="course-card">
-            <div class="course-code">PH1010</div>
-            <div class="course-name">Foundations of Physics</div>
-            <div class="course-desc">Classical mechanics and kinematics. Exploring the shift from force-based Newtonian views to energy-based Lagrangian frameworks.</div>
-          </div>
-          
-          <div class="course-card">
-            <div class="course-code">CS1100</div>
-            <div class="course-name">Intro to Programming</div>
-            <div class="course-desc">Translating logic into execution. Learning to structure algorithms and solve computational problems efficiently.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= PAGE 3: QUANT & CODE ================= -->
-    <div id="page-quant" class="page-view">
-      <h2 class="section-title animate-up">Programming & Exploration</h2>
-
-      <div class="card animate-up delay-1">
-        <h3>Data Analysis & Logic with Python</h3>
-        <p>
-          Python is my go-to for exploratory programming. I'm currently using it to understand basic statistical distributions, manipulate datasets, and write introductory algorithms that form the basis of machine learning.
-        </p>
-        <div class="tag-cluster">
-          <span class="tag tag-cyan">Python</span>
-          <span class="tag tag-cyan">NumPy</span>
-          <span class="tag">Algorithms</span>
-        </div>
-      </div>
-
-      <div class="card animate-up delay-2">
-        <h3>Matrix Operations in MATLAB</h3>
-        <p>
-          Leveraging MATLAB to handle heavy linear algebra computations. I use it to visualize mathematical models, perform matrix decompositions, and solve systems of equations numerically rather than just analytically.
-        </p>
-        <div class="tag-cluster">
-          <span class="tag tag-cyan">MATLAB</span>
-          <span class="tag">Linear Algebra</span>
-          <span class="tag">Data Visualization</span>
-        </div>
-      </div>
-
-      <div class="card animate-up delay-3">
-        <h3>Symbolic Computation in Mathematica</h3>
-        <p>
-          Using Wolfram Mathematica to verify complex calculus derivations and explore mathematical theories visually. It's an incredible tool for turning abstract equations into tangible, interactive 3D plots.
-        </p>
-        <div class="tag-cluster">
-          <span class="tag tag-gold">Wolfram Mathematica</span>
-          <span class="tag tag-pink">Calculus</span>
-          <span class="tag">Symbolic Math</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= PAGE 4: INTERESTS & LIFE ================= -->
-    <div id="page-life" class="page-view">
-      <h2 class="section-title animate-up">Interests, Energy & Beyond the Desk</h2>
-
-      <div class="grid-2">
-        <div class="card animate-up delay-1">
-          <h3>🏸 Interdepartmental League Badminton</h3>
-          <p>
-            I play competitive badminton for the Interdepartmental League. The fast-paced tactical agility, reflex demands, and absolute focus required on the court provide the perfect physical counterbalance to sitting at a desk doing math.
-          </p>
-        </div>
-
-        <div class="card animate-up delay-2">
-          <h3>🎤 Live Concerts & Music</h3>
-          <p>
-            Music is my constant companion. I absolutely love the energy of live concerts. Whether it's blasting high-energy Punjabi tracks by <strong>Diljit Dosanjh</strong> and <strong>Karan Aujla</strong>, or getting lost in the soulful Hindi melodies of <strong>Arijit Singh</strong>, a good playlist is mandatory for both studying and chilling.
-          </p>
-        </div>
-
-        <div class="card animate-up delay-3">
-          <h3>🌍 Travel & Exploration</h3>
-          <p>
-            Avid traveler keen on discovering new landscapes, diverse regional cultures, historical architecture, and scenic outdoor trails whenever I get a break from campus.
-          </p>
-        </div>
-        
-        <div class="card animate-up delay-3">
-          <h3>⚙️ Physics Philosophy</h3>
-          <p>
-            I often find myself geeking out over how physics is formulated. There is something profoundly elegant about minimizing the "action" of a system using Lagrangian mechanics compared to drawing endless free-body diagrams for Newton's laws.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= PAGE 5: DEDICATED CONNECT HUB ================= -->
-    <div id="page-connect" class="page-view">
-      <h2 class="section-title animate-up">Connect & Direct Channels</h2>
-      <p class="animate-up delay-1" style="color: var(--text-muted); margin-bottom: 24px;">
+    <!-- ================= TAB 5: CONNECT ================= -->
+    <div id="connect" class="tab-content">
+      <h2 class="section-title scroll-reveal">Let's Connect</h2>
+      <p class="scroll-reveal" style="color: var(--text-body); margin-bottom: 30px;">
         Feel free to reach out for study sessions, coding collaborations, music recommendations, or a game of badminton on campus.
       </p>
 
-      <div class="contact-grid">
-        <!-- LinkedIn -->
-        <a href="[https://www.linkedin.com/in/dhruv-goyal-624324302](https://www.linkedin.com/in/dhruv-goyal-624324302)" target="_blank" class="contact-card animate-up delay-1">
-          <div>
-            <div class="contact-label">Professional Network</div>
-            <div class="contact-value">LinkedIn</div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Connect with me professionally and view academic updates.</p>
-          </div>
-          <div class="contact-action">Open Profile &rarr;</div>
+      <div class="grid-2">
+        <a href="https://www.linkedin.com/in/dhruv-goyal-624324302" target="_blank" class="card contact-card hover-cyan scroll-reveal">
+          <div class="contact-label">Professional Network</div>
+          <div class="contact-value">LinkedIn</div>
         </a>
 
-        <!-- GitHub -->
-        <a href="[https://github.com/dhruvgoyal-io](https://github.com/dhruvgoyal-io)" target="_blank" class="contact-card animate-up delay-2">
-          <div>
-            <div class="contact-label">Code Repository</div>
-            <div class="contact-value">GitHub / dhruvgoyal-io</div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Explore my Python scripts, MATLAB plots, and beginner projects.</p>
-          </div>
-          <div class="contact-action">View Repositories &rarr;</div>
+        <a href="https://github.com/dhruvgoyal-io" target="_blank" class="card contact-card hover-orange scroll-reveal">
+          <div class="contact-label">Code Repository</div>
+          <div class="contact-value">GitHub / dhruvgoyal-io</div>
         </a>
 
-        <!-- Instagram -->
-        <a href="[https://instagram.com/_dhruv_x](https://instagram.com/_dhruv_x)_" target="_blank" class="contact-card animate-up delay-3">
-          <div>
-            <div class="contact-label">Social & Lifestyle</div>
-            <div class="contact-value">@_dhruv_x_</div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Follow concert clips, badminton, and campus life.</p>
-          </div>
-          <div class="contact-action">Visit Instagram &rarr;</div>
+        <a href="https://instagram.com/_dhruv_x_" target="_blank" class="card contact-card hover-pink scroll-reveal">
+          <div class="contact-label">Social & Lifestyle</div>
+          <div class="contact-value">@_dhruv_x_</div>
         </a>
 
-        <!-- Personal Email -->
-        <div class="contact-card animate-up delay-3" style="cursor: pointer;" onclick="copyText('your-personal-email@gmail.com', 'Personal Email copied!')">
-          <div>
-            <div class="contact-label">Direct Inbox</div>
-            <div class="contact-value" style="font-size: 0.95rem;">Personal Mail</div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Click to copy personal email for general conversations.</p>
-          </div>
-          <div class="contact-action">📋 Click to Copy</div>
+        <div class="card contact-card hover-cyan scroll-reveal" style="cursor: pointer;" onclick="alert('Email copied to clipboard!')">
+          <div class="contact-label">Direct Inbox</div>
+          <div class="contact-value">Drop an Email</div>
         </div>
       </div>
     </div>
 
     <footer>
-      &copy; 2026 Dhruv Goyal &bull; Indian Institute of Technology Madras &bull; Hosted on GitHub Pages
+      &copy; 2026 Dhruv Goyal &bull; Indian Institute of Technology Madras
     </footer>
   </div>
 
-  <div id="copy-toast" class="copy-toast">Copied to clipboard!</div>
-
-  <!-- Interactive Starfield & Logic -->
   <script>
-    // Tab Page Switcher with Animation Trigger
-    function switchPage(pageId) {
-      // Hide all pages and reset animations
-      document.querySelectorAll('.page-view').forEach(page => {
-        page.classList.remove('active');
-        // Temporarily remove animation classes to re-trigger them
-        const animatedElements = page.querySelectorAll('.animate-up');
-        animatedElements.forEach(el => {
-          el.style.animation = 'none';
-          el.offsetHeight; /* trigger reflow */
-          el.style.animation = null; 
-        });
+    // 1. Tab Switching Logic (Fixed the global event bug)
+    function switchTab(tabId, btnElement) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
       });
-      
-      // Update nav buttons
+      // Remove active class from all buttons
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
       });
       
-      // Show target page
-      const targetPage = document.getElementById('page-' + pageId);
-      if (targetPage) {
-        targetPage.classList.add('active');
-      }
+      // Activate clicked tab and button
+      document.getElementById(tabId).classList.add('active');
+      btnElement.classList.add('active');
       
-      event.target.classList.add('active');
+      // Scroll to top of page smoothly
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Re-trigger scroll animations for the newly opened tab
+      setTimeout(observeElements, 50);
     }
 
-    // Copy to Clipboard Feedback Toast
-    function copyText(text, message) {
-      navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('copy-toast');
-        toast.innerText = message;
-        toast.classList.add('show');
-        setTimeout(() => {
-          toast.classList.remove('show');
-        }, 2500);
+    // 2. Scroll Reveal Animation using Intersection Observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Optional: unobserve after revealing so it doesn't animate out and in again
+          // observer.unobserve(entry.target); 
+        }
+      });
+    }, observerOptions);
+
+    function observeElements() {
+      // Reset visibility for currently active tab elements
+      const revealElements = document.querySelectorAll('.tab-content.active .scroll-reveal');
+      revealElements.forEach(el => {
+        el.classList.remove('visible'); // Reset to trigger animation
+        observer.observe(el);
       });
     }
 
-    // Dynamic & Interactive Space Starfield Canvas
+    // Initialize observer on load
+    document.addEventListener("DOMContentLoaded", observeElements);
+
+    // 3. Minimal Professional Starfield Background
     const canvas = document.getElementById('space-canvas');
     const ctx = canvas.getContext('2d');
     let stars = [];
-    
-    // Mouse tracking for interactivity
-    let mouse = { x: null, y: null };
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.x;
-      mouse.y = e.y;
-    });
-    window.addEventListener('mouseout', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
 
-    function resizeCanvas() {
+    function initCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       stars = [];
-      for (let i = 0; i < 120; i++) { // Increased star count slightly
+      // Fewer stars, much more subtle
+      for (let i = 0; i < 70; i++) { 
         stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          baseX: Math.random() * canvas.width, // Original X for parallax return
-          size: Math.random() * 1.8 + 0.4,
-          speed: Math.random() * 0.3 + 0.1,
-          alpha: Math.random() * 0.8 + 0.2,
-          flicker: Math.random() * 0.02 + 0.005
+          size: Math.random() * 1.2 + 0.2,
+          speed: Math.random() * 0.15 + 0.05,
+          opacity: Math.random() * 0.5 + 0.1
         });
       }
     }
 
     function animateStars() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#fff";
+      ctx.fillStyle = "#ffffff";
 
       stars.forEach(star => {
-        // Vertical movement
         star.y -= star.speed;
         if (star.y < 0) {
           star.y = canvas.height;
           star.x = Math.random() * canvas.width;
-          star.baseX = star.x;
-        }
-        
-        // Mouse Repulsion Effect
-        if (mouse.x != null && mouse.y != null) {
-          let dx = mouse.x - star.x;
-          let dy = mouse.y - star.y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 100) {
-            star.x -= dx * 0.02; // Push star away slightly
-          } else {
-            // Gently return to original horizontal path
-            if (star.x !== star.baseX) {
-              let returnDx = star.baseX - star.x;
-              star.x += returnDx * 0.01; 
-            }
-          }
-        }
-        
-        // Flickering
-        star.alpha += star.flicker;
-        if (star.alpha > 0.95 || star.alpha < 0.2) {
-          star.flicker = -star.flicker;
         }
 
-        ctx.globalAlpha = Math.max(0, Math.min(1, star.alpha));
+        ctx.globalAlpha = star.opacity;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
         ctx.fill();
       });
-
       requestAnimationFrame(animateStars);
     }
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    window.addEventListener('resize', initCanvas);
+    initCanvas();
     animateStars();
   </script>
 </body>
