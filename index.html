@@ -1,33 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dhruv Goyal | Mathematics, Quant & AI | IIT Madras</title>
-  
-  <!-- Modern Typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
+  <meta name="theme-color" content="#f7f2e9" />
+  <meta name="description" content="Dhruv Goyal — IIT Madras undergraduate exploring mathematics, quantitative finance, and artificial intelligence." />
+  <title>Dhruv Goyal | Mathematics, Quant &amp; AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      /* Professional Dark Theme */
-      --bg-deep: #050505;
-      --card-bg: rgba(18, 18, 20, 0.65);
-      --card-border: rgba(255, 255, 255, 0.08);
-      
-      /* Neon Accents */
-      --neon-cyan: #00e5ff;
-      --neon-pink: #ff007f;
-      --neon-orange: #ff6600;
-      
-      /* Text Colors */
-      --text-main: #f8fafc;
-      --text-body: #a1a1aa;
-      --text-muted: #71717a;
-      
-      --nav-bg: rgba(10, 10, 10, 0.75);
+      --paper: #f7f2e9;
+      --paper-deep: #eee5d7;
+      --ink: #29251f;
+      --muted: #71695f;
+      --line: rgba(54, 43, 30, .14);
+      --card: rgba(255, 253, 248, .82);
+      --orange: #bd682f;
+      --orange-dark: #965024;
+      --rose: #b87583;
+      --rose-pale: #f0dce0;
+      --sage: #78836b;
+      --shadow: 0 18px 48px rgba(64, 48, 27, .08);
+      --radius: 22px;
     }
 
     * {
@@ -36,358 +35,1186 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background-color: var(--bg-deep);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      line-height: 1.6;
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 92% 5%, rgba(189, 104, 47, .10), transparent 24rem),
+        radial-gradient(circle at 2% 38%, rgba(184, 117, 131, .08), transparent 28rem),
+        var(--paper);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.7;
     }
 
-    /* ================= DYNAMIC BACKGROUND ================= */
-    .bg-grid {
+    body::before {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -2;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 50px 50px;
+      inset: 0;
+      content: "";
       pointer-events: none;
-    }
-
-    .ambient-blob {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(140px);
       z-index: -1;
-      opacity: 0.15;
-      pointer-events: none;
-      animation: floatBlob 25s ease-in-out infinite alternate;
+      opacity: .18;
+      background-image: radial-gradient(rgba(60, 44, 26, .26) .65px, transparent .65px);
+      background-size: 7px 7px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
     }
 
-    .blob-cyan { width: 500px; height: 500px; background: var(--neon-cyan); top: -100px; left: -150px; }
-    .blob-pink { width: 450px; height: 450px; background: var(--neon-pink); bottom: -100px; right: -100px; animation-delay: -7s; animation-duration: 20s; }
-    .blob-orange { width: 400px; height: 400px; background: var(--neon-orange); top: 40%; left: 50%; transform: translate(-50%, -50%); animation-delay: -12s; animation-duration: 28s; }
-
-    @keyframes floatBlob {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(50px, 80px) scale(1.1); }
-      100% { transform: translate(-60px, -40px) scale(0.9); }
+    a {
+      color: inherit;
     }
 
-    /* ================= LAYOUT & NAV ================= */
-    .container { max-width: 900px; margin: 0 auto; padding: 40px 24px 100px; }
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 44px));
+      margin: 0 auto;
+      padding: 26px 0 38px;
+    }
+
+    /* Navigation */
 
     nav {
-      position: sticky; top: 20px; z-index: 100;
-      background: var(--nav-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border); border-radius: 100px;
-      padding: 8px 12px; display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 12px 10px 20px;
+      margin-bottom: 46px;
+      border: 1px solid rgba(81, 61, 38, .15);
+      border-radius: 999px;
+      background: rgba(250, 246, 239, .86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 8px 28px rgba(57, 42, 25, .06);
     }
 
-    .nav-brand { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; padding-left: 12px; }
-    .nav-brand span { color: var(--neon-cyan); }
+    .nav-brand {
+      flex: 0 0 auto;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.16rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      text-decoration: none;
+    }
 
-    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-brand span {
+      color: var(--orange);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      list-style: none;
+    }
 
     .nav-btn {
-      background: transparent; border: none; color: var(--text-muted);
-      font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 0.9rem;
-      padding: 8px 16px; border-radius: 100px; cursor: pointer; transition: all 0.3s ease;
+      position: relative;
+      padding: 9px 14px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--muted);
+      background: transparent;
+      font-size: .82rem;
+      font-weight: 700;
+      transition: color .22s ease, background .22s ease, transform .22s ease;
     }
-    .nav-btn:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
-    .nav-btn.active { color: var(--bg-deep); background: var(--text-main); font-weight: 600; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
 
-    /* ================= TAB SYSTEM & ANIMATIONS ================= */
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
+    .nav-btn:hover {
+      color: var(--ink);
+      background: rgba(189, 104, 47, .08);
+    }
 
-    /* Controlled by JavaScript now */
+    .nav-btn.active {
+      color: #fffaf2;
+      background: var(--ink);
+    }
+
+    .nav-btn:focus-visible,
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(189, 104, 47, .55);
+      outline-offset: 4px;
+    }
+
+    /* Tabs and animations */
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: tabIn .35s ease both;
+    }
+
+    @keyframes tabIn {
+      from {
+        opacity: .4;
+        transform: translateY(7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .stagger-item {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: translateY(12px);
+      transition: opacity .48s ease, transform .48s ease;
     }
-    
+
     .stagger-item.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    
-    /* Extra delay helper for JS if needed */
-    .delay-6 { animation-delay: 0.65s; }
 
-    /* ================= TYPOGRAPHY ================= */
-    .hero { margin-bottom: 60px; }
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--neon-cyan);
-      background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.2);
-      padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
+    /* Hero and portrait */
+
+    .hero {
+      min-height: 465px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(290px, .9fr);
+      align-items: center;
+      gap: clamp(28px, 5vw, 66px);
+      margin-bottom: 46px;
     }
-    .status-dot {
-      width: 6px; height: 6px; background: var(--neon-cyan); border-radius: 50%;
-      box-shadow: 0 0 10px var(--neon-cyan); animation: pulse 2s infinite;
+
+    .hero-copy {
+      padding: 12px 0 18px;
+      position: relative;
+      z-index: 1;
     }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-    h1.hero-title { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 16px; }
-    .hero-tagline { font-size: 1.25rem; color: var(--text-body); margin-bottom: 12px; }
-    .section-title { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 600; margin: 50px 0 25px; display: flex; align-items: center; gap: 12px; }
-    .section-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--card-border), transparent); }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 23px;
+      padding: 7px 12px;
+      border: 1px solid rgba(189, 104, 47, .24);
+      border-radius: 999px;
+      color: var(--orange-dark);
+      background: rgba(255, 253, 248, .65);
+      font: 500 .69rem 'DM Mono', monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
 
-    /* ================= CARDS ================= */
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--sage);
+      box-shadow: 0 0 0 4px rgba(120, 131, 107, .13);
+    }
+
+    h1.hero-title {
+      max-width: 690px;
+      font: 800 clamp(3.1rem, 6.6vw, 5.3rem)/.98 'Outfit', sans-serif;
+      letter-spacing: -.065em;
+    }
+
+    .hero-title .name-accent {
+      color: var(--orange);
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .hero-title .name-accent::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      height: 12px;
+      left: 1px;
+      right: 1px;
+      bottom: 3px;
+      background: var(--rose-pale);
+      transform: rotate(-1.6deg);
+      border-radius: 4px;
+    }
+
+    .hero-tagline {
+      max-width: 535px;
+      margin-top: 23px;
+      color: #5c554c;
+      font-size: clamp(1.02rem, 1.7vw, 1.2rem);
+      line-height: 1.85;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 15px;
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: .83rem;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      display: inline-block;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 29px;
+    }
+
+    .pill-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 16px;
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: .84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+
+    .pill-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .pill-primary {
+      color: #fffaf3;
+      background: var(--ink);
+      border: 0;
+      box-shadow: 0 7px 18px rgba(41, 37, 31, .13);
+    }
+
+    .pill-primary:hover {
+      background: var(--orange-dark);
+      box-shadow: 0 9px 22px rgba(150, 80, 36, .2);
+    }
+
+    .pill-secondary {
+      color: var(--ink);
+      background: rgba(255, 253, 248, .62);
+      border: 1px solid var(--line);
+    }
+
+    .pill-secondary:hover {
+      background: #fffdf8;
+    }
+
+    .portrait-stage {
+      position: relative;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .portrait-sun {
+      position: absolute;
+      width: 88%;
+      max-width: 405px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #e8c18d;
+      right: 0;
+      top: 5%;
+      z-index: -2;
+    }
+
+    .portrait-orbit {
+      position: absolute;
+      width: 95%;
+      max-width: 440px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(150, 80, 36, .28);
+      border-radius: 50%;
+      right: -2%;
+      top: 1%;
+      z-index: -1;
+      transform: rotate(-16deg);
+    }
+
+    .portrait-orbit::after {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--rose);
+      top: 10%;
+      left: 17%;
+      box-shadow: 0 0 0 6px rgba(184, 117, 131, .14);
+    }
+
+    .portrait-frame {
+      position: relative;
+      width: min(78%, 330px);
+      height: 390px;
+      overflow: hidden;
+      border: 7px solid rgba(255, 253, 248, .86);
+      border-radius: 48% 48% 25px 25px / 34% 34% 25px 25px;
+      background: var(--paper-deep);
+      box-shadow: 0 24px 55px rgba(84, 55, 29, .19);
+      transform: rotate(2deg);
+    }
+
+    .portrait-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3);
+    }
+
+    .portrait-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 52% 44%;
+    }
+
+    .photo-note {
+      position: absolute;
+      right: -1%;
+      bottom: 7%;
+      padding: 12px 15px;
+      max-width: 178px;
+      background: #fffdf7;
+      border: 1px solid rgba(81, 61, 38, .13);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      transform: rotate(-4deg);
+    }
+
+    .photo-note strong {
+      display: block;
+      font: 700 .9rem 'Outfit', sans-serif;
+    }
+
+    .photo-note span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font: .68rem 'DM Mono', monospace;
+    }
+
+    .portrait-kicker {
+      position: absolute;
+      left: 0;
+      bottom: 14%;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: var(--orange-dark);
+      font: .65rem 'DM Mono', monospace;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    /* Content sections */
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 44px 0 22px;
+      font: 700 1.55rem 'Outfit', sans-serif;
+      letter-spacing: -.025em;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--line), transparent);
+    }
+
+    .section-kicker {
+      color: var(--orange-dark);
+      font: 500 .68rem 'DM Mono', monospace;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
     .card {
-      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px;
-      padding: 30px; margin-bottom: 24px; position: relative;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      padding: 28px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(81, 61, 38, .13);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 7px 24px rgba(64, 48, 27, .025);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
     }
-    .card:hover { transform: translateY(-6px); background: rgba(25, 25, 28, 0.8); }
-    .card.hover-cyan:hover { border-color: rgba(0, 229, 255, 0.4); box-shadow: 0 10px 40px rgba(0, 229, 255, 0.1); }
-    .card.hover-pink:hover { border-color: rgba(255, 0, 127, 0.4); box-shadow: 0 10px 40px rgba(255, 0, 127, 0.1); }
-    .card.hover-orange:hover { border-color: rgba(255, 102, 0, 0.4); box-shadow: 0 10px 40px rgba(255, 102, 0, 0.1); }
 
-    .card h3 { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 12px; }
-    .card p { color: var(--text-body); font-size: 0.95rem; }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      background: #fffdf9;
+    }
 
-    /* ================= TAGS ================= */
-    .tag-cluster { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .card.hover-cyan:hover {
+      border-color: rgba(120, 131, 107, .6);
+    }
+
+    .card.hover-pink:hover {
+      border-color: rgba(184, 117, 131, .55);
+    }
+
+    .card.hover-orange:hover {
+      border-color: rgba(189, 104, 47, .5);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font: 700 1.23rem/1.3 'Outfit', sans-serif;
+      letter-spacing: -.025em;
+    }
+
+    .card h4 {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .card p {
+      color: #6a6258;
+      font-size: .91rem;
+      line-height: 1.8;
+    }
+
+    .feature-card {
+      padding: 32px;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 3px;
+      border-radius: 9px;
+      background: var(--orange);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-2 .card,
+    .grid-3 .card {
+      height: 100%;
+      margin-bottom: 0;
+    }
+
+    .tag-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 16px;
+    }
+
     .tag {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; padding: 6px 12px; border-radius: 6px;
-      background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); transition: all 0.3s ease; cursor: default;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(81, 61, 38, .13);
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: rgba(255, 255, 255, .55);
+      color: #71695f;
+      font: .68rem 'DM Mono', monospace;
+      transition: transform .2s ease;
     }
-    .tag.cyan { color: var(--neon-cyan); border-color: rgba(0, 229, 255, 0.2); background: rgba(0, 229, 255, 0.05); }
-    .tag.pink { color: var(--neon-pink); border-color: rgba(255, 0, 127, 0.2); background: rgba(255, 0, 127, 0.05); }
-    .tag.orange { color: var(--neon-orange); border-color: rgba(255, 102, 0, 0.2); background: rgba(255, 102, 0, 0.05); }
-    .tag:hover { transform: translateY(-2px); filter: brightness(1.3); }
 
-    /* ================= CONTACT LINKS ================= */
-    .contact-card { text-decoration: none; display: flex; flex-direction: column; justify-content: center; }
-    .contact-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .contact-value { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
-    footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--card-border); font-family: 'JetBrains Mono', monospace; }
+    .tag:hover {
+      transform: translateY(-2px);
+    }
 
-    @media (max-width: 768px) {
-      nav { flex-direction: column; gap: 12px; border-radius: 20px; padding: 16px; }
-      .nav-links { flex-wrap: wrap; justify-content: center; }
-      h1.hero-title { font-size: 2.5rem; }
+    .tag.cyan {
+      color: #56654a;
+      background: #edf0e8;
+      border-color: #dbe3d3;
+    }
+
+    .tag.pink {
+      color: #975866;
+      background: #f6e9ec;
+      border-color: #ecd4da;
+    }
+
+    .tag.orange {
+      color: #98552c;
+      background: #f8eadb;
+      border-color: #efd7c1;
+    }
+
+    .course-card {
+      padding: 22px;
+    }
+
+    .course-code {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--orange-dark);
+      font: 500 .68rem 'DM Mono', monospace;
+      letter-spacing: .04em;
+    }
+
+    .course-card h4 {
+      margin-bottom: 8px;
+      font-size: 1.04rem;
+      line-height: 1.4;
+    }
+
+    /* Contact cards */
+
+    .contact-intro {
+      max-width: 650px;
+      color: var(--muted);
+      margin: -6px 0 24px;
+      font-size: .95rem;
+    }
+
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 142px;
+      text-decoration: none;
+    }
+
+    .contact-card::after {
+      content: "↗";
+      position: absolute;
+      right: 25px;
+      top: 22px;
+      color: #9e9589;
+      font-size: 1.1rem;
+      transition: transform .2s ease, color .2s ease;
+    }
+
+    .contact-card:hover::after {
+      transform: translate(2px, -2px);
+      color: var(--orange);
+    }
+
+    .contact-label {
+      margin-bottom: 8px;
+      color: #898074;
+      font: 500 .67rem 'DM Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+    }
+
+    .contact-value {
+      overflow-wrap: anywhere;
+      padding-right: 15px;
+      font: 700 1.09rem/1.35 'Outfit', sans-serif;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 74px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: #8b8175;
+      font: .68rem 'DM Mono', monospace;
+    }
+
+    .footer-mark {
+      color: var(--orange-dark);
+    }
+
+    /* Responsive layout */
+
+    @media (max-width: 850px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: minmax(0, 1fr) minmax(250px, .8fr);
+        gap: 20px;
+      }
+
+      .portrait-stage {
+        min-height: 360px;
+      }
+
+      .portrait-frame {
+        height: 330px;
+        width: min(82%, 290px);
+      }
+
+      .portrait-sun {
+        width: 90%;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-btn {
+        padding: 8px 10px;
+        font-size: .78rem;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: min(100% - 28px, 520px);
+        padding-top: 14px;
+      }
+
+      nav {
+        position: static;
+        flex-direction: column;
+        gap: 8px;
+        padding: 14px 10px 10px;
+        margin-bottom: 25px;
+        border-radius: 22px;
+      }
+
+      .nav-brand {
+        align-self: flex-start;
+        padding-left: 8px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .nav-btn {
+        padding: 8px 11px;
+        font-size: .76rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        margin-bottom: 28px;
+      }
+
+      .hero-copy {
+        padding: 12px 2px 0;
+      }
+
+      h1.hero-title {
+        font-size: clamp(3.25rem, 13vw, 4.7rem);
+      }
+
+      .hero-tagline {
+        margin-top: 17px;
+        font-size: 1rem;
+      }
+
+      .eyebrow {
+        margin-bottom: 18px;
+        font-size: .62rem;
+      }
+
+      .portrait-stage {
+        min-height: 370px;
+        margin-top: 4px;
+      }
+
+      .portrait-frame {
+        width: min(72%, 280px);
+        height: 340px;
+      }
+
+      .portrait-sun {
+        width: 76%;
+        right: 8%;
+        top: 4%;
+      }
+
+      .portrait-orbit {
+        width: 83%;
+        right: 5%;
+        top: 1%;
+      }
+
+      .photo-note {
+        right: 1%;
+        bottom: 6%;
+      }
+
+      .portrait-kicker {
+        left: 5%;
+        bottom: 15%;
+      }
+
+      .section-title {
+        margin-top: 33px;
+        font-size: 1.38rem;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .card {
+        padding: 23px;
+        border-radius: 18px;
+      }
+
+      .feature-card {
+        padding: 26px;
+      }
+
+      .course-card {
+        padding: 22px;
+      }
+
+      footer {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-top: 52px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .stagger-item {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
+
 <body>
+  <main class="container">
 
-  <!-- Dynamic Background -->
-  <div class="bg-grid"></div>
-  <div class="ambient-blob blob-cyan"></div>
-  <div class="ambient-blob blob-pink"></div>
-  <div class="ambient-blob blob-orange"></div>
+    <!-- NAVIGATION -->
+    <nav aria-label="Main navigation">
+      <a class="nav-brand" href="#overview"
+         onclick="switchTab('overview'); return false;"
+         aria-label="Dhruv Goyal home">Dhruv<span>.</span></a>
 
-  <div class="container">
-    
-    <!-- Top Navigation -->
-    <nav>
-      <div class="nav-brand">Dhruv<span>.</span></div>
       <ul class="nav-links">
-        <li><button class="nav-btn active" onclick="switchTab('overview', this)">Overview</button></li>
-        <li><button class="nav-btn" onclick="switchTab('academics', this)">Academics</button></li>
-        <li><button class="nav-btn" onclick="switchTab('tech', this)">Tech Stack</button></li>
-        <li><button class="nav-btn" onclick="switchTab('life', this)">Beyond Desk</button></li>
-        <li><button class="nav-btn" onclick="switchTab('connect', this)">Connect</button></li>
+        <li><button class="nav-btn active" data-tab="overview" aria-selected="true" onclick="switchTab('overview')">Overview</button></li>
+        <li><button class="nav-btn" data-tab="academics" aria-selected="false" onclick="switchTab('academics')">Academics</button></li>
+        <li><button class="nav-btn" data-tab="tech" aria-selected="false" onclick="switchTab('tech')">Tech Stack</button></li>
+        <li><button class="nav-btn" data-tab="life" aria-selected="false" onclick="switchTab('life')">Beyond Desk</button></li>
+        <li><button class="nav-btn" data-tab="connect" aria-selected="false" onclick="switchTab('connect')">Connect</button></li>
       </ul>
     </nav>
 
-    <!-- ================= TAB 1: OVERVIEW ================= -->
-    <div id="overview" class="tab-content active">
-      <div class="hero stagger-item">
-        <div class="status-badge">
-          <span class="status-dot"></span>
-          IIT MADRAS &bull; BS MATHEMATICS
+    <!-- OVERVIEW -->
+    <section id="overview" class="tab-content active" aria-label="Overview">
+
+      <div class="hero">
+        <div class="hero-copy stagger-item">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            IIT Madras · BS Mathematics
+          </div>
+
+          <h1 class="hero-title">
+            Hey, I’m<br />
+            <span class="name-accent">Dhruv Goyal.</span>
+          </h1>
+
+          <p class="hero-tagline">
+            Exploring the space where pure mathematics, quantitative finance, and artificial intelligence meet.
+          </p>
+
+          <div class="hero-meta">
+            <span>⌖ Chennai, India</span>
+            <i class="meta-dot" aria-hidden="true"></i>
+            <span>Class of 2030</span>
+          </div>
+
+          <div class="hero-actions">
+            <button class="pill-link pill-primary" onclick="switchTab('connect')">
+              Say hello <span aria-hidden="true">↗</span>
+            </button>
+
+            <button class="pill-link pill-secondary" onclick="switchTab('academics')">
+              Explore my work <span aria-hidden="true">↓</span>
+            </button>
+          </div>
         </div>
-        <h1 class="hero-title">Hey, I'm Dhruv Goyal.</h1>
-        <p class="hero-tagline">Navigating the intersection of Pure Mathematics, Quantitative Finance, and Artificial Intelligence.</p>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">📍 Chennai, India &nbsp;&bull;&nbsp; Class of 2030</p>
+
+        <!-- PHOTO COMPOSITION -->
+        <div class="portrait-stage stagger-item" aria-label="Portrait of Dhruv Goyal">
+          <div class="portrait-sun"></div>
+          <div class="portrait-orbit"></div>
+
+          <div class="portrait-frame">
+            <img
+              src="assets/dhruv.jpg"
+              alt="Dhruv Goyal wearing sunglasses and a pink striped shirt"
+              fetchpriority="high"
+            />
+          </div>
+
+          <div class="portrait-kicker">CURIOUS BY DEFAULT · BUILT TO EXPLORE</div>
+
+          <div class="photo-note">
+            <strong>Math × Code × Ideas</strong>
+            <span>in progress, always.</span>
+          </div>
+        </div>
       </div>
 
-      <div class="card hover-cyan stagger-item">
-        <h3>The Big Picture</h3>
+      <div class="card feature-card hover-cyan stagger-item">
+        <div class="section-kicker">The big picture</div>
+        <h3>Serious about the ideas. Curious about what they can do.</h3>
         <p>
-          I'm a first-year undergraduate at the Indian Institute of Technology Madras. While my core focus is building an airtight foundation in mathematics and physics, I don't just want to study theory—I want to build with it. I'm actively translating abstract math into computational models to explore quantitative finance and machine learning.
+          I’m a first-year undergraduate at the Indian Institute of Technology Madras.
+          While my core focus is building an airtight foundation in mathematics and physics,
+          I don’t just want to study theory—I want to build with it. I’m actively translating
+          abstract math into computational models to explore quantitative finance and machine learning.
         </p>
       </div>
 
-      <h2 class="section-title stagger-item">What I Do</h2>
+      <h2 class="section-title stagger-item">What I’m into</h2>
+
       <div class="grid-3">
-        <div class="card hover-pink stagger-item">
+        <article class="card hover-pink stagger-item">
+          <div class="section-kicker">01 · Foundations</div>
           <h3>Theoretical Math</h3>
-          <p>Laying down the groundwork in multivariable calculus and linear algebra. The essential building blocks for quant models.</p>
-          <div class="tag-cluster"><span class="tag pink">Calculus</span><span class="tag pink">Linear Algebra</span></div>
-        </div>
-        <div class="card hover-cyan stagger-item">
+          <p>
+            Laying the groundwork in multivariable calculus and linear algebra—the essential
+            building blocks for quantitative models.
+          </p>
+          <div class="tag-cluster">
+            <span class="tag pink">Calculus</span>
+            <span class="tag pink">Linear Algebra</span>
+          </div>
+        </article>
+
+        <article class="card hover-cyan stagger-item">
+          <div class="section-kicker">02 · Making</div>
           <h3>Computational AI</h3>
-          <p>Turning formulas into functions. I use programming to manipulate datasets, visualize matrices, and build logic systems.</p>
-          <div class="tag-cluster"><span class="tag cyan">Python</span><span class="tag cyan">MATLAB</span></div>
-        </div>
-        <div class="card hover-orange stagger-item">
-          <h3>Life Off-Screen</h3>
-          <p>When I'm not coding or doing math, I'm competing in the ID Badminton League, cooking, or blasting Diljit Dosanjh at full volume.</p>
-          <div class="tag-cluster"><span class="tag orange">Badminton</span><span class="tag orange">Concerts</span></div>
-        </div>
-      </div>
-    </div>
+          <p>
+            Turning formulas into functions. I use programming to explore datasets,
+            visualize matrices, and build logical systems.
+          </p>
+          <div class="tag-cluster">
+            <span class="tag cyan">Python</span>
+            <span class="tag cyan">MATLAB</span>
+          </div>
+        </article>
 
-    <!-- ================= TAB 2: ACADEMICS ================= -->
-    <div id="academics" class="tab-content">
+        <article class="card hover-orange stagger-item">
+          <div class="section-kicker">03 · Off-screen</div>
+          <h3>Life Beyond Code</h3>
+          <p>
+            When I’m not coding or doing math, I’m competing in the ID Badminton League,
+            cooking, or playing Diljit Dosanjh on repeat.
+          </p>
+          <div class="tag-cluster">
+            <span class="tag orange">Badminton</span>
+            <span class="tag orange">Live Music</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ACADEMICS -->
+    <section id="academics" class="tab-content" aria-label="Academics">
+      <div class="section-kicker stagger-item">Learning in progress</div>
       <h2 class="section-title stagger-item">Academic Curriculum</h2>
-      <div class="card hover-cyan stagger-item">
+
+      <div class="card feature-card hover-cyan stagger-item">
         <h3>Department of Mathematics</h3>
-        <p style="margin-bottom: 24px;">My current coursework bridges abstract theoretical proof with actionable, algorithmic problem-solving.</p>
-        <div class="grid-2">
-          
-          <div class="card hover-pink stagger-item" style="margin-bottom:0; padding:20px;">
-            <h4 style="color:var(--text-main); margin-bottom:8px; font-size:1.1rem;">MA1100: Calculus & Real Analysis</h4>
-            <p style="font-size:0.9rem;">Building the rigorous foundation of limits, series convergence, and multivariable differential calculus.</p>
-          </div>
-          
-          <div class="card hover-pink stagger-item" style="margin-bottom:0; padding:20px;">
-            <h4 style="color:var(--text-main); margin-bottom:8px; font-size:1.1rem;">MA2101: Linear Algebra</h4>
-            <p style="font-size:0.9rem;">Exploring vector spaces, matrices, and linear transformations—the core of modern AI architectures.</p>
-          </div>
-          
-          <div class="card hover-cyan stagger-item" style="margin-bottom:0; padding:20px;">
-            <h4 style="color:var(--text-main); margin-bottom:8px; font-size:1.1rem;">MA1103: Scientific Computing</h4>
-            <p style="font-size:0.9rem;">Translating math into code. Focusing on algorithm design, numerical solutions, and scientific programming.</p>
-          </div>
+        <p>
+          My current coursework bridges abstract theoretical proof with practical,
+          algorithmic problem-solving.
+        </p>
 
-          <div class="card hover-orange stagger-item" style="margin-bottom:0; padding:20px;">
-            <h4 style="color:var(--text-main); margin-bottom:8px; font-size:1.1rem;">PH1010: Foundations of Physics</h4>
-            <p style="font-size:0.9rem;">Classical mechanics. Exploring the shift from force-based Newtonian views to the elegant, energy-based Lagrangian frameworks.</p>
-          </div>
-          
-          <div class="card hover-orange stagger-item" style="margin-bottom:0; padding:20px;">
-            <h4 style="color:var(--text-main); margin-bottom:8px; font-size:1.1rem;">PH1030: Physics Laboratory</h4>
-            <p style="font-size:0.9rem;">Hands-on experimental physics. Validating theoretical mechanics and phenomena through precise measurements and data analysis.</p>
-          </div>
+        <div class="grid-2" style="margin-top:24px;">
+          <article class="card course-card hover-pink stagger-item">
+            <span class="course-code">MA1100</span>
+            <h4>Calculus &amp; Real Analysis</h4>
+            <p>
+              Building a rigorous foundation in limits, series convergence,
+              and multivariable differential calculus.
+            </p>
+          </article>
 
+          <article class="card course-card hover-pink stagger-item">
+            <span class="course-code">MA2101</span>
+            <h4>Linear Algebra</h4>
+            <p>
+              Exploring vector spaces, matrices, and linear transformations—the
+              core of modern AI architectures.
+            </p>
+          </article>
+
+          <article class="card course-card hover-cyan stagger-item">
+            <span class="course-code">MA1103</span>
+            <h4>Scientific Computing</h4>
+            <p>
+              Translating math into code through algorithm design, numerical
+              solutions, and scientific programming.
+            </p>
+          </article>
+
+          <article class="card course-card hover-orange stagger-item">
+            <span class="course-code">PH1010</span>
+            <h4>Foundations of Physics</h4>
+            <p>
+              Classical mechanics, from force-based Newtonian approaches to
+              elegant energy-based Lagrangian frameworks.
+            </p>
+          </article>
+
+          <article class="card course-card hover-orange stagger-item">
+            <span class="course-code">PH1030</span>
+            <h4>Physics Laboratory</h4>
+            <p>
+              Testing theoretical ideas through experimental measurements,
+              observation, and data analysis.
+            </p>
+          </article>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- ================= TAB 3: TECH STACK ================= -->
-    <div id="tech" class="tab-content">
-      <h2 class="section-title stagger-item">Tools & Languages</h2>
-      <div class="card hover-cyan stagger-item">
-        <h3>Python for Data & AI</h3>
-        <p>My primary tool for exploring artificial intelligence. I use Python to understand statistical distributions, manipulate data, and write the foundational algorithms that power machine learning.</p>
-        <div class="tag-cluster"><span class="tag cyan">Python</span><span class="tag cyan">Data Analysis</span></div>
-      </div>
-      <div class="card hover-orange stagger-item">
+    <!-- TECH STACK -->
+    <section id="tech" class="tab-content" aria-label="Tech stack">
+      <div class="section-kicker stagger-item">Tools I’m learning with</div>
+      <h2 class="section-title stagger-item">Tools &amp; Languages</h2>
+
+      <article class="card hover-cyan stagger-item">
+        <div class="section-kicker">01 · Data &amp; AI</div>
+        <h3>Python</h3>
+        <p>
+          My primary tool for exploring artificial intelligence. I use Python
+          to understand statistical distributions, manipulate data, and write
+          foundational algorithms that power machine learning.
+        </p>
+        <div class="tag-cluster">
+          <span class="tag cyan">Python</span>
+          <span class="tag cyan">Data Analysis</span>
+        </div>
+      </article>
+
+      <article class="card hover-orange stagger-item">
+        <div class="section-kicker">02 · Numerical work</div>
         <h3>MATLAB for Scientific Computing</h3>
-        <p>MATLAB is my go-to for heavy linear algebra. I use it to visualize mathematical models, perform matrix operations, and solve complex equations numerically.</p>
-        <div class="tag-cluster"><span class="tag orange">MATLAB</span><span class="tag orange">Matrix Logic</span></div>
-      </div>
-      <div class="card hover-pink stagger-item">
+        <p>
+          MATLAB is my go-to for heavy linear algebra. I use it to visualize
+          mathematical models, perform matrix operations, and solve complex
+          equations numerically.
+        </p>
+        <div class="tag-cluster">
+          <span class="tag orange">MATLAB</span>
+          <span class="tag orange">Matrix Logic</span>
+        </div>
+      </article>
+
+      <article class="card hover-pink stagger-item">
+        <div class="section-kicker">03 · Symbolic exploration</div>
         <h3>Wolfram Mathematica</h3>
-        <p>A powerful sandbox for symbolic computation. It helps me verify difficult calculus derivations and turn abstract mathematical theories into interactive 3D visualizations.</p>
-        <div class="tag-cluster"><span class="tag pink">Wolfram Language</span><span class="tag pink">Symbolic Math</span></div>
-      </div>
-    </div>
+        <p>
+          A powerful sandbox for symbolic computation. It helps me verify
+          calculus derivations and turn abstract mathematical ideas into
+          interactive 3D visualizations.
+        </p>
+        <div class="tag-cluster">
+          <span class="tag pink">Wolfram Language</span>
+          <span class="tag pink">Symbolic Math</span>
+        </div>
+      </article>
+    </section>
 
-    <!-- ================= TAB 4: BEYOND DESK ================= -->
-    <div id="life" class="tab-content">
-      <h2 class="section-title stagger-item">Interests & Energy</h2>
+    <!-- BEYOND DESK -->
+    <section id="life" class="tab-content" aria-label="Interests beyond study">
+      <div class="section-kicker stagger-item">A little more personal</div>
+      <h2 class="section-title stagger-item">Interests &amp; Energy</h2>
+
       <div class="grid-2">
-        <div class="card hover-orange stagger-item">
-          <h3>🏸 ID League Badminton</h3>
-          <p>I play competitive badminton for the Interdepartmental League. The fast-paced agility, tactical reflexes, and focus required on the court provide the perfect physical counterbalance to staring at code.</p>
-        </div>
-        <div class="card hover-pink stagger-item">
-          <h3>🎤 Playlists & Concerts</h3>
-          <p>Music is a constant. My study and hype playlists are heavily fueled by high-energy Punjabi tracks—<strong>Diljit Dosanjh</strong> and <strong>Karan Aujla</strong> are always on loop. When it's time to chill, it's all about soulful Hindi melodies by <strong>Arijit Singh</strong>.</p>
-        </div>
-        <div class="card hover-cyan stagger-item">
-          <h3>🍳 Culinary Experiments</h3>
-          <p>I love cooking. I treat the kitchen like a creative lab, experimenting with spices, flavors, and techniques to craft the perfect meal after a long day of classes.</p>
-        </div>
-        <div class="card hover-orange stagger-item">
-          <h3>🌍 Travel & Physics</h3>
-          <p>I love traveling to experience new cultures. Also, I often find myself geeking out over how physics is formulated—minimizing the "action" of a system using <strong>Lagrangian mechanics</strong> is profoundly more elegant than drawing endless free-body diagrams!</p>
-        </div>
-      </div>
-    </div>
+        <article class="card hover-orange stagger-item">
+          <div class="section-kicker">🏸 Sport</div>
+          <h3>ID League Badminton</h3>
+          <p>
+            I play competitive badminton for the Interdepartmental League.
+            The agility, tactical reflexes, and focus required on court are
+            the perfect physical counterbalance to staring at code.
+          </p>
+        </article>
 
-    <!-- ================= TAB 5: CONNECT ================= -->
-    <div id="connect" class="tab-content">
-      <h2 class="section-title stagger-item">Let's Connect</h2>
-      <p class="stagger-item" style="color: var(--text-body); margin-bottom: 30px;">Feel free to reach out for study sessions, coding collaborations, music recommendations, or a game of badminton on campus.</p>
+        <article class="card hover-pink stagger-item">
+          <div class="section-kicker">🎤 Music</div>
+          <h3>Playlists &amp; Concerts</h3>
+          <p>
+            Music is a constant. My study and hype playlists are powered by
+            high-energy Punjabi tracks—<strong>Diljit Dosanjh</strong> and
+            <strong>Karan Aujla</strong> are always on loop. For a slower mood,
+            it’s soulful Hindi melodies by <strong>Arijit Singh</strong>.
+          </p>
+        </article>
+
+        <article class="card hover-cyan stagger-item">
+          <div class="section-kicker">🍳 Experimentation</div>
+          <h3>Culinary Experiments</h3>
+          <p>
+            I love cooking. I treat the kitchen like a creative lab,
+            experimenting with spices, flavors, and techniques to make
+            the perfect meal after a long day of classes.
+          </p>
+        </article>
+
+        <article class="card hover-orange stagger-item">
+          <div class="section-kicker">🌍 Exploring</div>
+          <h3>Travel &amp; Physics</h3>
+          <p>
+            I love traveling to experience new cultures. I also geek out over
+            how physics is formulated—minimizing the “action” of a system using
+            <strong>Lagrangian mechanics</strong> feels profoundly more elegant
+            than drawing endless free-body diagrams.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="connect" class="tab-content" aria-label="Contact details">
+      <div class="section-kicker stagger-item">Open to good conversations</div>
+      <h2 class="section-title stagger-item">Let’s Connect</h2>
+
+      <p class="contact-intro stagger-item">
+        Reach out for study sessions, coding collaborations, music recommendations,
+        or a game of badminton on campus. Always happy to meet curious people.
+      </p>
+
       <div class="grid-2">
-        <a href="https://www.linkedin.com/in/dhruv-goyal-624324302" target="_blank" class="card contact-card hover-cyan stagger-item">
-          <div class="contact-label">Professional Network</div><div class="contact-value">LinkedIn</div>
+        <a href="mailto:ma26b007@smail.iitm.ac.in"
+           class="card contact-card hover-orange stagger-item">
+          <span class="contact-label">Student email</span>
+          <span class="contact-value">ma26b007@smail.iitm.ac.in</span>
         </a>
-        <a href="https://github.com/dhruvgoyal-io" target="_blank" class="card contact-card hover-orange stagger-item">
-          <div class="contact-label">Code Repository</div><div class="contact-value">GitHub / dhruvgoyal-io</div>
-        </a>
-        <a href="https://instagram.com/_dhruv_x_" target="_blank" class="card contact-card hover-pink stagger-item">
-          <div class="contact-label">Social & Lifestyle</div><div class="contact-value">@_dhruv_x_</div>
-        </a>
-        <div class="card contact-card hover-cyan stagger-item" style="cursor: pointer;" onclick="alert('Dhruv\'s email placeholder copied!')">
-          <div class="contact-label">Direct Inbox</div><div class="contact-value">Drop an Email</div>
-        </div>
-      </div>
-    </div>
 
-    <footer>&copy; 2026 Dhruv Goyal &bull; Indian Institute of Technology Madras</footer>
-  </div>
+        <a href="https://www.linkedin.com/in/dhruv-goyal-624324302"
+           target="_blank" rel="noopener noreferrer"
+           class="card contact-card hover-cyan stagger-item">
+          <span class="contact-label">Professional network</span>
+          <span class="contact-value">LinkedIn</span>
+        </a>
+
+        <a href="https://github.com/dhruvgoyal-io"
+           target="_blank" rel="noopener noreferrer"
+           class="card contact-card hover-orange stagger-item">
+          <span class="contact-label">Code repository</span>
+          <span class="contact-value">GitHub / dhruvgoyal-io</span>
+        </a>
+
+        <a href="https://instagram.com/_dhruv_x_"
+           target="_blank" rel="noopener noreferrer"
+           class="card contact-card hover-pink stagger-item">
+          <span class="contact-label">Social &amp; lifestyle</span>
+          <span class="contact-value">@_dhruv_x_</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Dhruv Goyal · IIT Madras</span>
+      <span class="footer-mark">Made with curiosity.</span>
+    </footer>
+  </main>
 
   <script>
-    // Bulletproof Tab Switching Logic via JavaScript
-    function switchTab(tabId, btnElement) {
-      
-      // 1. Hide all tabs and reset visibility of animation items
-      document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-        tab.querySelectorAll('.stagger-item').forEach(item => {
-          item.classList.remove('visible'); // Reset animation state
-        });
-      });
+    function revealItems(tab) {
+      const items = tab.querySelectorAll('.stagger-item');
 
-      // 2. Remove active state from all nav buttons
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      
-      // 3. Activate new tab and button
-      const targetTab = document.getElementById(tabId);
-      targetTab.classList.add('active');
-      btnElement.classList.add('active');
-      
-      // 4. Smooth scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // 5. Trigger staggered fade-in for the elements in the new tab
-      const items = targetTab.querySelectorAll('.stagger-item');
       items.forEach((item, index) => {
-        setTimeout(() => {
+        window.setTimeout(() => {
           item.classList.add('visible');
-        }, 50 + (index * 80)); // 80ms delay between each element popping up
+        }, 35 + index * 55);
       });
     }
 
-    // Trigger animations for the first page on load
-    window.onload = () => {
-      const initialItems = document.querySelectorAll('#overview .stagger-item');
-      initialItems.forEach((item, index) => {
-        setTimeout(() => {
-          item.classList.add('visible');
-        }, 100 + (index * 80));
+    function switchTab(tabId) {
+      const targetTab = document.getElementById(tabId);
+
+      if (!targetTab) return;
+
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+
+        tab.querySelectorAll('.stagger-item').forEach(item => {
+          item.classList.remove('visible');
+        });
       });
-    };
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const selected = btn.dataset.tab === tabId;
+
+        btn.classList.toggle('active', selected);
+        btn.setAttribute('aria-selected', String(selected));
+      });
+
+      targetTab.classList.add('active');
+      revealItems(targetTab);
+
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth'
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const overview = document.getElementById('overview');
+      revealItems(overview);
+    });
   </script>
 </body>
 </html>
