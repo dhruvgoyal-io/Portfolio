@@ -1,320 +1,917 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en" data-theme="obsidian">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#090b0e">
-  <meta name="description" content="Dhruv Goyal — IIT Madras undergraduate building foundations in mathematics, computing, AI, and quantitative finance.">
-  <title>Dhruv Goyal — Math, Code & Curiosity</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="site.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dhruv Goyal — BS Mathematics at IIT Madras. Exploring Pure Mathematics, Quantitative Finance, Algorithmic Problem Solving, and Computational AI." />
+  <title>Dhruv Goyal | Mathematics, Quant &amp; AI — IIT Madras</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Three.js for Scroll-Reactive 3D Mathematical & Telemetry Manifold -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. THEME TOKENS (4 COMPLETE ENGINE PRESETS)
+       ========================================================================== */
+    :root,
+    [data-theme="obsidian"] {
+      --bg-base: #06060b;
+      --bg-elevated: #0d0d17;
+      --bg-glass: rgba(14, 14, 24, 0.72);
+      --bg-card: rgba(18, 18, 30, 0.62);
+      --bg-card-hover: rgba(25, 25, 43, 0.85);
+      --text-main: #f4f4f8;
+      --text-muted: #9394a8;
+      --text-dim: #5d5e74;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.35);
+      --accent-2: #06b6d4;
+      --accent-3: #f43f5e;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-bright: rgba(139, 92, 246, 0.48);
+      --grid-color: rgba(139, 92, 246, 0.075);
+      --shadow-heavy: 0 24px 60px rgba(0, 0, 0, 0.65);
+      --wire-primary: 0x8b5cf6;
+      --wire-secondary: 0x06b6d4;
+    }
+
+    [data-theme="weissach"] {
+      --bg-base: #08090c;
+      --bg-elevated: #111319;
+      --bg-glass: rgba(16, 18, 24, 0.78);
+      --bg-card: rgba(20, 22, 30, 0.7);
+      --bg-card-hover: rgba(28, 31, 42, 0.9);
+      --text-main: #f5f7fa;
+      --text-muted: #9aa1b2;
+      --text-dim: #5f6677;
+      --accent: #ff2800; /* Guards Red */
+      --accent-glow: rgba(255, 40, 0, 0.38);
+      --accent-2: #a3e635; /* Acid Green */
+      --accent-3: #facc15; /* Racing Yellow */
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --border-bright: rgba(255, 40, 0, 0.55);
+      --grid-color: rgba(255, 40, 0, 0.075);
+      --shadow-heavy: 0 24px 60px rgba(0, 0, 0, 0.75);
+      --wire-primary: 0xff2800;
+      --wire-secondary: 0xa3e635;
+    }
+
+    [data-theme="quant"] {
+      --bg-base: #040907;
+      --bg-elevated: #091310;
+      --bg-glass: rgba(9, 20, 16, 0.78);
+      --bg-card: rgba(12, 26, 21, 0.68);
+      --bg-card-hover: rgba(16, 36, 29, 0.88);
+      --text-main: #ecfdf5;
+      --text-muted: #86a899;
+      --text-dim: #4c6b5e;
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.34);
+      --accent-2: #f59e0b;
+      --accent-3: #38bdf8;
+      --border-subtle: rgba(16, 185, 129, 0.12);
+      --border-bright: rgba(16, 185, 129, 0.52);
+      --grid-color: rgba(16, 185, 129, 0.075);
+      --shadow-heavy: 0 24px 60px rgba(0, 0, 0, 0.7);
+      --wire-primary: 0x10b981;
+      --wire-secondary: 0xf59e0b;
+    }
+
+    [data-theme="editorial"] {
+      --bg-base: #f5f0e6;
+      --bg-elevated: #ebe3d5;
+      --bg-glass: rgba(247, 242, 233, 0.84);
+      --bg-card: rgba(255, 252, 246, 0.78);
+      --bg-card-hover: rgba(255, 255, 255, 0.96);
+      --text-main: #1f1b16;
+      --text-muted: #655c51;
+      --text-dim: #968c7e;
+      --accent: #c2591a;
+      --accent-glow: rgba(194, 89, 26, 0.22);
+      --accent-2: #4c6b51;
+      --accent-3: #9e3b52;
+      --border-subtle: rgba(45, 34, 21, 0.12);
+      --border-bright: rgba(194, 89, 26, 0.45);
+      --grid-color: rgba(194, 89, 26, 0.08);
+      --shadow-heavy: 0 20px 48px rgba(56, 40, 22, 0.1);
+      --wire-primary: 0xc2591a;
+      --wire-secondary: 0x4c6b51;
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE ARCHITECTURE
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.65;
+      transition: background-color 0.35s ease, color 0.35s ease;
+    }
+
+    /* Interactive Cursor Spotlight Grid Overlay */
+    .ambient-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(
+        650px circle at var(--mouse-x, 50vw) var(--mouse-y, 40vh),
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.22) 55%,
+        transparent 100%
+      );
+      -webkit-mask-image: radial-gradient(
+        650px circle at var(--mouse-x, 50vw) var(--mouse-y, 40vh),
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.22) 55%,
+        transparent 100%
+      );
+    }
+
+    /* Fixed WebGL 3D Viewport */
+    #webgl-stage {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .app-shell {
+      position: relative;
+      z-index: 2;
+      width: min(1220px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 20px 0 80px;
+    }
+
+    /* ==========================================================================
+       3. TOP TELEMETRY RIBBON & FLOATING NAVIGATION
+       ========================================================================== */
+    .telemetry-ribbon {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 8px 18px;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .telemetry-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 10px var(--accent-2);
+      display: inline-block;
+      margin-right: 6px;
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    .nav-bar {
+      position: sticky;
+      top: 14px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+      margin-bottom: 36px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-glass);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: var(--shadow-heavy);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      padding-left: 6px;
+    }
+
+    .brand-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: var(--accent-glow);
+      color: var(--text-main);
+      border: 1px solid var(--border-bright);
+    }
+
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      border: 0;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
+
+    .nav-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-btn.active {
+      color: #fff;
+      background: var(--accent);
+      box-shadow: 0 0 22px var(--accent-glow);
+    }
+
+    .theme-Cluster {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-left: 8px;
+      border-left: 1px solid var(--border-subtle);
+    }
+
+    .theme-chip {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border-subtle);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .theme-chip:hover,
+    .theme-chip.active {
+      transform: scale(1.16);
+      border-color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       4. RIGHT-SIDE SCROLL DEPTH TELEMETRY RAIL
+       ========================================================================== */
+    .scroll-rail {
+      position: fixed;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .scroll-track {
+      width: 3px;
+      height: 130px;
+      background: var(--border-subtle);
+      border-radius: 99px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .scroll-bar {
+      width: 100%;
+      height: 15%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      transition: height 0.08s linear;
+    }
+
+    /* ==========================================================================
+       5. PAGE & BENTO CARD SYSTEM (MOUSE SPOTLIGHT BORDERS)
+       ========================================================================== */
+    .page-view {
+      display: none;
+    }
+
+    .page-view.active {
+      display: block;
+      animation: pageReveal 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes pageReveal {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bento-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 22px;
+      padding: 28px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      overflow: hidden;
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+    }
+
+    .bento-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        480px circle at var(--card-x, 0px) var(--card-y, 0px),
+        var(--accent-glow),
+        transparent 45%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-bright);
+      background: var(--bg-card-hover);
+    }
+
+    .bento-card:hover::before {
+      opacity: 0.45;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    h1.hero-display {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.85rem, 6.4vw, 5.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      margin-bottom: 22px;
+    }
+
+    .gradient-span {
+      background: linear-gradient(135deg, var(--text-main) 20%, var(--accent) 65%, var(--accent-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 48px 0 22px;
+    }
+
+    .section-heading::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border-bright), transparent);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    /* ==========================================================================
+       6. OVERVIEW SCROLL CHOREOGRAPHY (MULTI-STAGE STORYTELLING)
+       ========================================================================== */
+    .hero-stage {
+      min-height: 78vh;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 32px;
+      padding: 24px 0 40px;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.04rem, 1.5vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 580px;
+      margin-bottom: 26px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.22s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 25px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .btn-ghost {
+      background: var(--bg-card);
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Live 3D HUD Inspection Panel on Right Side of Hero */
+    .manifold-hud {
+      justify-self: end;
+      width: min(100%, 370px);
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hud-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px dashed var(--border-subtle);
+      font-size: 0.74rem;
+    }
+
+    .hud-row span:first-child {
+      color: var(--text-muted);
+    }
+
+    .geometry-pills {
+      display: flex;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .geo-pill {
+      flex: 1;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .geo-pill.active,
+    .geo-pill:hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+      background: var(--accent-glow);
+    }
+
+    .scroll-chapter {
+      min-height: 56vh;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      align-items: center;
+      padding: 36px 0;
+    }
+
+    .chapter-card {
+      grid-column: span 7;
+    }
+
+    .scroll-chapter.right .chapter-card {
+      grid-column: 6 / span 7;
+    }
+
+    .formula-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid var(--border-subtle);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent-2);
+    }
+
+    /* ==========================================================================
+       7. CODEFORCES LIVE TELEMETRY ENGINE (yupitsdhruv)
+       ========================================================================== */
+    .cf-banner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .cf-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .cf-stat-box {
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .cf-stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .cf-stat-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-top: 4px;
+      color: var(--text-main);
+    }
+
+    .cf-submissions-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .cf-sub-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--border-subtle);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+    }
+
+    .verdict-ok {
+      color: #10b981;
+      font-weight: 700;
+    }
+
+    .verdict-other {
+      color: #f59e0b;
+    }
+
+    /* ==========================================================================
+       8. INTERACTIVE LAB (SLIDERS, CHARTS, PORSCHE 911 GT3 RS TELEMETRY)
+       ========================================================================== */
+    .sim-canvas {
+      width: 100%;
+      height: 250px;
+      border-radius: 14px;
+      background: rgba(4, 5, 10, 0.72);
+      border: 1px solid var(--border-subtle);
+      margin: 14px 0;
+      display: block;
+    }
+
+    .slider-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .slider-box {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .slider-box label {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .slider-box input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       9. TECH STACK SANDBOX & DUAL-PORTRAIT DOSSIER
+       ========================================================================== */
+    .code-sandbox {
+      margin-top: 24px;
+      border-radius: 18px;
+      border: 1px solid var(--border-subtle);
+      background: #07080e;
+      overflow: hidden;
+    }
+
+    .sandbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .lang-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .lang-tab {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      cursor: pointer;
+    }
+
+    .lang-tab.active {
+      background: var(--accent-glow);
+      color: #fff;
+      border-color: var(--border-bright);
+    }
+
+    .sandbox-body {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      min-height: 240px;
+    }
+
+    .code-pane,
+    .output-pane {
+      padding: 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      color: #e2e8f0;
+    }
+
+    .output-pane {
+      background: rgba(0, 0, 0, 0.45);
+      border-left: 1px solid var(--border-subtle);
+      color: var(--accent-2);
+    }
+
+    /* Portrait Dossier on Beyond Desk Page */
+    .dossier-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .portrait-card {
+      position: relative;
+      height: 410px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-bright);
+      background: var(--bg-elevated);
+    }
+
+    .portrait-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 52% 40%;
+      transition: filter 0.35s ease, transform 0.35s ease;
+    }
+
+    .portrait-card.filter-editorial img {
+      filter: grayscale(18%) contrast(1.08) brightness(0.97);
+    }
+
+    .portrait-card.filter-mono img {
+      filter: grayscale(100%) contrast(1.18);
+    }
+
+    .portrait-card.filter-cyber img {
+      filter: saturate(1.25) contrast(1.12);
+    }
+
+    .portrait-overlay {
+      position: absolute;
+      inset: auto 12px 12px 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(8, 8, 14, 0.82);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: #fff;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag-chip {
+      padding: 4px 11px;
+      border-radius: 99px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.69rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer & GT3 RS Flat-6 Telemetry Modal */
+    footer {
+      margin-top: 72px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .easter-trigger {
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 99px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-main);
+      transition: border-color 0.2s ease;
+    }
+
+    .easter-trigger:hover {
+      border-color: var(--accent);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 920px) {
+      .hero-stage,
+      .cf-banner,
+      .dossier-grid,
+      .sandbox-body,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .chapter-card,
+      .scroll-chapter.right .chapter-card {
+        grid-column: span 12;
+      }
+      .scroll-rail {
+        display: none;
+      }
+      .slider-group {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="progress-track">
-    <div class="progress-fill"></div>
-  </div>
 
-  <main id="main">
-    <div class="container">
-      <nav class="site-nav" aria-label="Main navigation">
-        <a class="brand" href="index.html">
-          <span class="brand-mark">DG</span>
-          <span>dhruv<span>.</span></span>
-        </a>
+  <!-- Cursor-Following Spotlight Grid -->
+  <div class="ambient-grid" aria-hidden="true"></div>
 
-        <ul class="nav-links">
-          <li><a href="index.html" aria-current="page">Overview</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="academics.html">Academics</a></li>
-          <li><a href="stack.html">Tech stack</a></li>
-          <li><a href="lab.html">3D lab</a></li>
-          <li><a href="garage.html">Garage</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+  <!-- Fixed 3D WebGL Canvas (Scroll-Reactive Manifold & Telemetry) -->
+  <canvas id="webgl-stage" aria-hidden="true"></canvas>
 
-        <div class="nav-tools">
-          <div class="theme-wrap">
-            <button class="theme-trigger"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="theme-dot"></span>
-              <span class="theme-label">Midnight</span>
-              <span>⌄</span>
-            </button>
-
-            <div class="theme-menu" role="menu">
-              <button class="theme-choice"
-                data-theme-choice="dark" role="menuitem"
-                aria-pressed="true">
-                <i class="theme-swatch"
-                  style="background:#c1f36b"></i>
-                Midnight / Lime
-              </button>
-
-              <button class="theme-choice"
-                data-theme-choice="light" role="menuitem"
-                aria-pressed="false">
-                <i class="theme-swatch"
-                  style="background:#5d8e25"></i>
-                Paper / Olive
-              </button>
-
-              <button class="theme-choice"
-                data-theme-choice="gt" role="menuitem"
-                aria-pressed="false">
-                <i class="theme-swatch"
-                  style="background:#ff604f"></i>
-                GT Slate / Red
-              </button>
-
-              <button class="theme-choice"
-                data-theme-choice="blue" role="menuitem"
-                aria-pressed="false">
-                <i class="theme-swatch"
-                  style="background:#84e2ff"></i>
-                Deep Blue / Ice
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="eyebrow">
-            <span class="pulse"></span>
-            IIT Madras · BS Mathematics
-          </div>
-
-          <h1 class="display-title">
-            Math brain.<br>
-            <span class="outline">Builder</span><br>
-            <span class="accent-text">energy.</span>
-          </h1>
-
-          <p class="lede">
-            I’m Dhruv — learning to turn mathematical ideas into things
-            you can actually see, test, and play with. Currently exploring
-            the overlap of mathematics, code, AI, and quantitative finance.
-          </p>
-
-          <div class="hero-subline">
-            <span class="dash"></span>
-            CURIOUS BY DEFAULT · WORK IN PROGRESS
-          </div>
-
-          <div class="button-row">
-            <a class="btn btn-primary" href="lab.html">
-              Enter the 3D lab <span class="arrow">↗</span>
-            </a>
-            <a class="btn btn-quiet" href="about.html">
-              A bit about me <span class="arrow">↗</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <canvas id="hero-canvas"></canvas>
-        </div>
-
-        <div class="hero-index">01 / THEORY → EXPERIMENT</div>
-
-        <div class="hero-bottom">
-          <a class="scroll-cue" href="#intersection">
-            <span class="scroll-line"></span>
-            Scroll to explore
-          </a>
-
-          <div class="hero-side-note">
-            CURRENTLY BUILDING<br>
-            FOUNDATIONS, NOT HYPE.
-          </div>
-        </div>
-      </section>
+  <!-- Right-Side Scroll Depth & Telemetry Rail -->
+  <aside class="scroll-rail" aria-hidden="true">
+    <span id="fps-counter">60 FPS</span>
+    <div class="scroll-track">
+      <div class="scroll-bar" id="scroll-progress-bar"></div>
     </div>
+    <span id="scroll-pct">00%</span>
+  </aside>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>MATHEMATICS <b>✳</b></span>
-        <span>COMPUTATIONAL THINKING <b>✳</b></span>
-        <span>ARTIFICIAL INTELLIGENCE <b>✳</b></span>
-        <span>QUANT FINANCE <b>✳</b></span>
-        <span>GOOD DESIGN <b>✳</b></span>
-        <span>MATHEMATICS <b>✳</b></span>
-        <span>COMPUTATIONAL THINKING <b>✳</b></span>
-        <span>ARTIFICIAL INTELLIGENCE <b>✳</b></span>
-        <span>QUANT FINANCE <b>✳</b></span>
-        <span>GOOD DESIGN <b>✳</b></span>
-      </div>
-    </div>
+  <div class="app-shell">
 
-    <div class="container">
-      <section class="section" id="intersection">
-        <div class="section-top reveal">
-          <div>
-            <p class="kicker">01 / The intersection</p>
-            <h2 class="section-heading">
-              Theory is a starting point.<br>
-              Experiment is the fun part.
-            </h2>
-          </div>
-
-          <p class="section-note">
-            I’m still learning the fundamentals — and I like making
-            that process visible instead of pretending I’ve already
-            figured it all out.
-          </p>
-        </div>
-
-        <div class="intersection-grid">
-          <div class="panel intersection-visual"
-            aria-label="Abstract orbit illustration">
-            <div class="orbit-ring"></div>
-            <div class="orbit-ring"></div>
-            <div class="orbit-ring"></div>
-            <div class="orbit-core"><span>∑</span></div>
-          </div>
-
-          <div class="panel intersection-copy reveal delay-1">
-            <p class="kicker">A small personal operating system</p>
-
-            <h3>
-              Understand it.<br>
-              <span class="accent-text">Model it.</span><br>
-              Break it. Repeat.
-            </h3>
-
-            <p>
-              Linear algebra gives a language for transformations.
-              Code lets me experiment with those ideas. AI and quantitative
-              finance are two places I’m curious to see where the
-              foundations lead.
-            </p>
-
-            <div class="stat-row">
-              <div class="stat">
-                <strong>Math</strong>
-                <span>First principles</span>
-              </div>
-              <div class="stat">
-                <strong>Code</strong>
-                <span>Make it tangible</span>
-              </div>
-              <div class="stat">
-                <strong>Curiosity</strong>
-                <span>Keep iterating</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-top reveal">
-          <div>
-            <p class="kicker">02 / Explore</p>
-            <h2 class="section-heading">
-              Different rooms.<br>
-              Same curiosity.
-            </h2>
-          </div>
-
-          <p class="section-note">
-            The site has separate spaces for what I’m studying,
-            the tools I’m learning, and the interactive ideas
-            I like to play with.
-          </p>
-        </div>
-
-        <div class="card-grid">
-          <article class="card reveal">
-            <span class="card-number">01</span>
-            <h3>Academics</h3>
-            <p>
-              Current coursework across calculus, real analysis,
-              linear algebra, scientific computing, and classical mechanics.
-            </p>
-            <a class="card-link" href="academics.html">
-              See the study map <span class="arrow">↗</span>
-            </a>
-          </article>
-
-          <article class="card reveal delay-1">
-            <span class="card-number">02</span>
-            <h3>Tech stack</h3>
-            <p>
-              Python, R, MATLAB, Wolfram Language, and the
-              HTML/CSS/JavaScript behind this little corner of the internet.
-            </p>
-            <a class="card-link" href="stack.html">
-              Explore the tools <span class="arrow">↗</span>
-            </a>
-          </article>
-
-          <article class="card reveal delay-2">
-            <span class="card-number">03</span>
-            <h3>Interactive lab</h3>
-            <p>
-              Change the parameters of a mathematical surface,
-              rotate it in space, and see how its shape responds.
-            </p>
-            <a class="card-link" href="lab.html">
-              Play with the model <span class="arrow">↗</span>
-            </a>
-          </article>
-        </div>
-      </section>
-
-      <section class="section"
-        style="padding-top:25px;padding-bottom:100px">
-        <div class="panel contact-panel reveal">
-          <div>
-            <p class="kicker">03 / Open loop</p>
-            <h2>Good ideas get better when shared.</h2>
-            <p>
-              For a conversation about mathematics, programming,
-              interesting projects, or the engineering behind a great car
-              — say hello.
-            </p>
-
-            <div class="button-row">
-              <a class="btn btn-primary" href="contact.html">
-                Let's connect <span class="arrow">↗</span>
-              </a>
-              <a class="btn btn-quiet" href="garage.html">
-                Or visit the garage <span class="arrow">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="contact-links">
-            <a class="contact-link" href="academics.html">
-              <span>
-                <small>Currently learning</small>
-                <strong>Foundations first</strong>
-              </span>
-              <span class="arrow">↗</span>
-            </a>
-
-            <a class="contact-link" href="lab.html">
-              <span>
-                <small>Currently playing with</small>
-                <strong>Interactive math</strong>
-              </span>
-              <span class="arrow">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <footer class="site-footer">
-        <span>© 2026 Dhruv Goyal</span>
-        <div class="footer-right">
-          <span><i class="footer-pip"></i>Made with curiosity</span>
-          <a href="#main">Back to top ↑</a>
-        </div>
-      </footer>
-    </div>
-  </main>
-</body>
-</html>
+    <!-- TOP LIVE TELEMETRY BAR -->
+    <header class="telemetry-ribbon">
+      <div class="telemetry-group">
+        <span><i class="pulse-dot"></i>SYS.ONLINE // IIT MADRAS · BS MATHEMATICS</span>
