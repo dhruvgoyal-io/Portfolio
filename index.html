@@ -305,8 +305,8 @@
     .hero-portrait { position:relative; z-index:2; width:100%; max-width:370px; justify-self:end; margin-top:24px; }
     .portrait-frame { position:relative; height:475px; overflow:hidden; isolation:isolate; border-radius:25px; border:1px solid rgba(255,255,255,.16); background:#0b0c12; box-shadow:0 30px 100px rgba(0,0,0,.56),0 0 62px rgba(111,119,255,.12),inset 0 1px 0 rgba(255,255,255,.09); transform:translateZ(0); }
     .portrait-frame::before { content:""; position:absolute; z-index:3; inset:0; border-radius:inherit; pointer-events:none; background:linear-gradient(145deg,rgba(255,255,255,.09),transparent 26%,transparent 65%,rgba(149,143,255,.09)); }
-    .portrait-frame img { width:100%; height:100%; display:block; object-fit:cover; object-position:50% 18%; filter:brightness(.82) saturate(.76) contrast(1.05); transform:scale(1.015); }
-    .portrait-shade { position:absolute; z-index:1; inset:0; background:linear-gradient(180deg,rgba(5,6,10,.31) 0%,rgba(5,6,10,.20) 43%,rgba(5,6,10,.55) 73%,rgba(5,6,10,.96) 100%),linear-gradient(90deg,rgba(4,5,8,.2),rgba(4,5,8,.02) 42%,rgba(4,5,8,.16)); pointer-events:none; }
+    .portrait-frame img { width:100%; height:100%; display:block; object-fit:cover; object-position:50% 18%; filter:brightness(.94) saturate(.84) contrast(1.04); transform:scale(1.015); }
+    .portrait-shade { position:absolute; z-index:1; inset:0; background:linear-gradient(180deg,rgba(5,6,10,.04) 0%,rgba(5,6,10,.02) 43%,rgba(5,6,10,.46) 73%,rgba(5,6,10,.96) 100%),linear-gradient(90deg,rgba(4,5,8,.12),transparent 42%,rgba(4,5,8,.08)); pointer-events:none; }
     .portrait-topline { position:absolute; z-index:4; top:19px; left:19px; right:19px; display:flex; align-items:center; gap:8px; padding-bottom:13px; color:rgba(245,246,255,.82); border-bottom:1px solid rgba(255,255,255,.22); font:9px 'IBM Plex Mono',monospace; letter-spacing:.12em; }
     .portrait-status { flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:#bbc1ff; box-shadow:0 0 13px rgba(174,180,255,.9); }
     .portrait-caption { position:absolute; z-index:4; left:22px; right:22px; bottom:23px; display:flex; flex-direction:column; gap:4px; }
