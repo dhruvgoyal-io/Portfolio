@@ -461,6 +461,26 @@
     }
   </style>
 
+
+  <style id="cinematic-nebula-art-direction">
+    /* The background is the hero: dark, vivid, layered and still readable. */
+    #kinetic-canvas { position:fixed; inset:0; z-index:0; display:block; width:100%; height:100%; pointer-events:none; opacity:.96; mix-blend-mode:screen; }
+    .ambient::before { opacity:.22; }
+    .ambient .beam-halo { opacity:.18; }
+    .ambient .beam-art { opacity:0; }
+    body::before { opacity:.34; }
+    .hero { isolation:isolate; }
+    .hero::before { content:""; position:absolute; z-index:0; inset:7% -10% 0 23%; pointer-events:none; background:radial-gradient(ellipse at 58% 48%,rgba(116,38,191,.13),transparent 63%); filter:blur(40px); }
+    .hero-copy,.hero-portrait { position:relative; z-index:2; }
+    .hero-portrait .portrait-frame { box-shadow:0 32px 100px rgba(0,0,0,.66),0 0 75px rgba(153,66,255,.16),inset 0 1px 0 rgba(255,255,255,.1); }
+    .site-header { background:linear-gradient(180deg,rgba(5,5,9,.72),rgba(5,5,9,.08)); }
+    .site-header.scrolled { background:rgba(5,5,9,.86); }
+    .marquee-wrap { background:rgba(4,3,8,.3); backdrop-filter:blur(6px); }
+    .surface-card { backdrop-filter:blur(4px); }
+    .contact-heading { box-shadow:0 0 80px rgba(119,49,190,.08); }
+    @media(max-width:700px) { #kinetic-canvas { opacity:.70; } .hero::before { inset:10% -20% 0 0; } }
+    @media(prefers-reduced-motion:reduce) { #kinetic-canvas { opacity:.48; } }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -659,59 +679,252 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
-    // Cinematic ambient field: slow particles, drifting light and pointer-reactive depth.
-    if (kineticCanvas && !reduceMotion) {
-      const ctx = kineticCanvas.getContext('2d', { alpha: true });
-      let width = 0, height = 0, dpr = 1, frame = 0, pointer = { x: -1000, y: -1000 };
-      const particles = [];
-      const particleCount = Math.min(coarsePointer ? 34 : 68, Math.floor((window.innerWidth * window.innerHeight) / 19000));
-      function resizeKinetic() {
-        dpr = Math.min(window.devicePixelRatio || 1, 1.6);
-        width = window.innerWidth; height = window.innerHeight;
-        kineticCanvas.width = Math.floor(width * dpr); kineticCanvas.height = Math.floor(height * dpr);
-        kineticCanvas.style.width = width + 'px'; kineticCanvas.style.height = height + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // Cinematic nebula engine: a real-time WebGL fluid field inspired by the supplied reference.
+    let nebulaGL = null;
+    let nebulaProgram = null;
+    let nebulaFrame = 0;
+    let nebulaRunning = false;
+    let nebulaStart = performance.now();
+    let nebulaMouse = { x: .5, y: .5 };
+    let nebulaScroll = 0;
+    let nebulaLastFrame = 0;
+
+    const vertexSource = `
+      attribute vec2 a_position;
+      void main() { gl_Position = vec4(a_position, 0.0, 1.0); }
+    `;
+    const fragmentSource = `
+      precision highp float;
+      uniform vec2 u_resolution;
+      uniform float u_time;
+      uniform vec2 u_mouse;
+      uniform float u_scroll;
+
+      float hash21(vec2 p) {
+        p = fract(p * vec2(123.34, 456.21));
+        p += dot(p, p + 45.32);
+        return fract(p.x * p.y);
       }
-      function seedParticles() {
-        particles.length = 0;
-        for (let i = 0; i < particleCount; i++) particles.push({
-          x: Math.random() * width, y: Math.random() * height,
-          r: .45 + Math.random() * 1.35, vx: (Math.random() - .5) * .13,
-          vy: -.08 - Math.random() * .18, phase: Math.random() * Math.PI * 2,
-          alpha: .12 + Math.random() * .32
-        });
+      float noise(vec2 p) {
+        vec2 i = floor(p), f = fract(p);
+        f = f * f * (3.0 - 2.0 * f);
+        float a = hash21(i);
+        float b = hash21(i + vec2(1.0, 0.0));
+        float c = hash21(i + vec2(0.0, 1.0));
+        float d = hash21(i + vec2(1.0, 1.0));
+        return mix(mix(a,b,f.x), mix(c,d,f.x), f.y);
       }
-      function drawKinetic() {
-        if (document.hidden) { frame = requestAnimationFrame(drawKinetic); return; }
-        ctx.clearRect(0, 0, width, height);
-        const t = performance.now() * .00012;
-        const glowX = width * (.72 + Math.sin(t * .8) * .09) + (pointer.x - width/2) * .035;
-        const glowY = height * (.28 + Math.cos(t) * .06) + (pointer.y - height/2) * .025;
-        const glow = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, Math.max(width,height) * .58);
-        glow.addColorStop(0, 'rgba(112,126,255,.075)');
-        glow.addColorStop(.42, 'rgba(80,94,190,.025)');
-        glow.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = glow; ctx.fillRect(0,0,width,height);
-        particles.forEach((p, i) => {
-          p.x += p.vx + Math.sin(t + p.phase) * .07; p.y += p.vy;
-          if (p.y < -8) { p.y = height + 8; p.x = Math.random() * width; }
-          if (p.x < -8) p.x = width + 8; if (p.x > width + 8) p.x = -8;
-          const dx = pointer.x - p.x, dy = pointer.y - p.y, dist = Math.hypot(dx,dy);
-          const influence = dist < 190 ? (1 - dist/190) : 0;
-          const alpha = p.alpha * (.72 + Math.sin(t * 2 + p.phase) * .28);
-          ctx.beginPath(); ctx.arc(p.x - dx * influence * .035, p.y - dy * influence * .035, p.r + influence*.6, 0, Math.PI*2);
-          ctx.fillStyle = 'rgba(196,202,255,' + alpha + ')'; ctx.fill();
-          if (!coarsePointer && i % 2 === 0 && dist < 145) {
-            ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(pointer.x,pointer.y);
-            ctx.strokeStyle = 'rgba(150,163,255,' + ((1-dist/145)*.09) + ')'; ctx.lineWidth = .7; ctx.stroke();
-          }
-        });
-        frame = requestAnimationFrame(drawKinetic);
+      float fbm(vec2 p) {
+        float value = 0.0;
+        float amplitude = 0.5;
+        for (int i = 0; i < 4; i++) {
+          value += amplitude * noise(p);
+          p = mat2(1.6, -1.2, 1.2, 1.6) * p * 1.17;
+          amplitude *= 0.5;
+        }
+        return value;
       }
-      resizeKinetic(); seedParticles(); drawKinetic();
-      window.addEventListener('resize', () => { resizeKinetic(); seedParticles(); }, { passive:true });
-      window.addEventListener('pointermove', e => { pointer.x=e.clientX; pointer.y=e.clientY; }, { passive:true });
+      float softPulse(float t, float center, float width) {
+        float d = abs(t - center);
+        return exp(-(d*d)/(width*width));
+      }
+      void main() {
+        vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+        float aspect = u_resolution.x / u_resolution.y;
+        vec2 p = uv - 0.5;
+        p.x *= aspect;
+
+        float t = u_time * 0.19;
+        float scrollDrift = u_scroll * 2.4;
+        vec2 mouse = (u_mouse - 0.5) * vec2(aspect, 1.0);
+        vec2 core = vec2(0.18*sin(t*0.72 + scrollDrift), 0.10*cos(t*0.48 - scrollDrift*0.55));
+        vec2 z = p - core - mouse*0.035;
+        float radius = length(z);
+        float angle = atan(z.y, z.x);
+
+        // Domain-warped fractal noise forms the rolling, smoky body.
+        vec2 q = vec2(
+          fbm(p*1.8 + vec2(-t*0.23, t*0.12)),
+          fbm(p*1.8 + vec2(4.7, t*0.17))
+        );
+        vec2 warp = vec2(
+          fbm(p*2.15 + q*1.85 + vec2(t*0.12, -t*0.16)),
+          fbm(p*2.15 + q*1.85 + vec2(6.1, -t*0.14))
+        );
+        float cloud = fbm(p*2.85 + warp*1.8 + vec2(-t*0.18, t*0.10));
+        float wisps = smoothstep(0.27, 0.78, cloud) * exp(-radius*1.35);
+        float smoke = wisps * (0.48 + 0.52*fbm(p*5.0 + warp*2.2 - t*0.08));
+
+        // Repeating energy blooms: sharp petal-like rays nested inside soft nebula.
+        float beatA = softPulse(mod(u_time, 13.0), 4.35, 1.45);
+        float beatB = softPulse(mod(u_time + 5.6, 16.0), 5.0, 2.0) * 0.55;
+        float beat = max(beatA, beatB);
+        float petals = 0.5 + 0.5*sin(angle*17.0 + cloud*8.0 + t*2.4 + warp.x*3.0);
+        float finePetals = 0.5 + 0.5*sin(angle*31.0 - cloud*13.0 - t*2.1);
+        float rays = pow(petals, 8.0)*0.82 + pow(finePetals, 15.0)*0.28;
+        float movingRing = 0.255 + 0.045*sin(angle*7.0 + t*1.65) + (cloud-0.5)*0.045;
+        float ring = exp(-pow((radius-movingRing)*18.0, 2.0));
+        float bloom = ring*rays*beat;
+
+        float tendrilWave = pow(max(0.0, cos(angle*10.0 + cloud*4.2 + t*1.35)), 22.0);
+        float tendrils = tendrilWave * exp(-abs(radius-(0.32+cloud*0.10))*10.5) * (0.24+beat*0.82);
+        float hotCore = exp(-radius*19.0)*(0.11+beat*0.82);
+
+        // A secondary bloom keeps the field alive outside the hero focal point.
+        vec2 z2 = p - vec2(-0.43 + 0.08*sin(t*0.62), 0.19 + 0.07*cos(t*0.7));
+        float r2 = length(z2);
+        float a2 = atan(z2.y,z2.x);
+        float sidePulse = softPulse(mod(u_time+7.3,17.0), 5.3, 2.2)*0.52;
+        float sideRays = pow(0.5+0.5*sin(a2*13.0+cloud*9.0-t*1.8), 10.0);
+        float sideRing = exp(-pow((r2-(0.17+0.025*sin(a2*5.0+t)))*22.0,2.0));
+        float sideBloom = sideRays*sideRing*sidePulse;
+
+        float edgeFade = 1.0 - smoothstep(0.48, 0.94, length(p*vec2(0.92,1.0)));
+        float density = smoke*0.46 + wisps*0.20 + bloom*0.88 + tendrils*0.58 + hotCore*0.64 + sideBloom*0.56;
+        density *= edgeFade;
+
+        vec3 deepViolet = vec3(0.12,0.035,0.28);
+        vec3 violet = vec3(0.39,0.07,0.76);
+        vec3 orchid = vec3(0.78,0.13,0.91);
+        vec3 lavender = vec3(0.91,0.59,1.0);
+        vec3 whiteHeat = vec3(1.0,0.88,1.0);
+        vec3 color = mix(deepViolet, violet, clamp(smoke*1.8 + wisps*0.5,0.0,1.0));
+        color = mix(color, orchid, clamp(bloom*1.5 + sideBloom,0.0,0.88));
+        color += lavender*(tendrils*0.48 + sideBloom*0.34);
+        color += whiteHeat*hotCore*0.50;
+
+        // Tiny suspended stars and sparks give the smoke a sense of scale.
+        vec2 cell = floor(uv*vec2(125.0,78.0));
+        float starSeed = hash21(cell);
+        float star = smoothstep(0.994,0.9995,starSeed);
+        float twinkle = 0.35 + 0.65*sin(u_time*1.8 + starSeed*90.0);
+        color += vec3(0.68,0.65,1.0)*star*twinkle*0.55;
+        float alpha = clamp(density*0.76 + star*0.17, 0.0, 0.78);
+        gl_FragColor = vec4(color, alpha);
+      }
+    `;
+
+    function compileNebulaShader(gl, type, source) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        const error = gl.getShaderInfoLog(shader);
+        gl.deleteShader(shader);
+        throw new Error(error || "Nebula shader compilation failed");
+      }
+      return shader;
     }
+
+    function startNebulaFallback() {
+      const ctx = kineticCanvas && kineticCanvas.getContext("2d");
+      if (!ctx) return;
+      const dots = Array.from({ length: coarsePointer ? 38 : 70 }, () => ({
+        x: Math.random()*innerWidth, y: Math.random()*innerHeight,
+        r: .5+Math.random()*1.4, vx:(Math.random()-.5)*.18,
+        vy:-.08-Math.random()*.2, phase:Math.random()*6.28
+      }));
+      let w=0,h=0,scale=1;
+      function resizeFallback() {
+        scale=Math.min(devicePixelRatio||1,1.15,1500/innerWidth);
+        w=innerWidth;h=innerHeight;
+        kineticCanvas.width=Math.floor(w*scale);kineticCanvas.height=Math.floor(h*scale);
+        kineticCanvas.style.width=w+"px";kineticCanvas.style.height=h+"px";
+        ctx.setTransform(scale,0,0,scale,0,0);
+      }
+      function drawFallback(now) {
+        if(document.hidden){nebulaRunning=false;return;}
+        ctx.clearRect(0,0,w,h);
+        const t=now*.00018;
+        const x=w*(.72+.13*Math.sin(t)),y=h*(.38+.11*Math.cos(t*.7));
+        const g=ctx.createRadialGradient(x,y,0,x,y,Math.max(w,h)*.58);
+        g.addColorStop(0,"rgba(158,55,255,.28)");
+        g.addColorStop(.35,"rgba(100,32,170,.17)");
+        g.addColorStop(1,"rgba(0,0,0,0)");
+        ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+        dots.forEach(d=>{d.x+=d.vx;d.y+=d.vy;if(d.y<-6){d.y=h+6;d.x=Math.random()*w}
+          ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fillStyle="rgba(213,185,255,.48)";ctx.fill();});
+        nebulaFrame=requestAnimationFrame(drawFallback);
+      }
+      resizeFallback();window.addEventListener("resize",resizeFallback,{passive:true});
+      kineticCanvas.dataset.fallback="true";
+      if(!reduceMotion){nebulaRunning=true;nebulaFrame=requestAnimationFrame(drawFallback);}
+      else drawFallback(4300);
+      document.addEventListener("visibilitychange",()=>{if(document.hidden){cancelAnimationFrame(nebulaFrame);nebulaRunning=false;}
+        else if(!reduceMotion&&!nebulaRunning){nebulaRunning=true;nebulaFrame=requestAnimationFrame(drawFallback);}});
+    }
+
+    function initialiseNebula() {
+      if (!kineticCanvas) return;
+      try {
+        const gl = kineticCanvas.getContext("webgl", {
+          alpha:true, antialias:false, depth:false, stencil:false,
+          premultipliedAlpha:false, powerPreference:"low-power"
+        });
+        if (!gl) throw new Error("WebGL is unavailable");
+        const vertex = compileNebulaShader(gl,gl.VERTEX_SHADER,vertexSource);
+        const fragment = compileNebulaShader(gl,gl.FRAGMENT_SHADER,fragmentSource);
+        const program = gl.createProgram();
+        gl.attachShader(program,vertex);gl.attachShader(program,fragment);gl.linkProgram(program);
+        if(!gl.getProgramParameter(program,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program)||"Nebula program link failed");
+        const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);
+        gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+        gl.useProgram(program);
+        const position=gl.getAttribLocation(program,"a_position");
+        gl.enableVertexAttribArray(position);gl.vertexAttribPointer(position,2,gl.FLOAT,false,0,0);
+        const resolution=gl.getUniformLocation(program,"u_resolution");
+        const time=gl.getUniformLocation(program,"u_time");
+        const mouse=gl.getUniformLocation(program,"u_mouse");
+        const scroll=gl.getUniformLocation(program,"u_scroll");
+        nebulaGL=gl;nebulaProgram=program;
+        function resizeNebula(){
+          const scale=Math.min(devicePixelRatio||1,1.1,1500/innerWidth,1050/innerHeight);
+          kineticCanvas.width=Math.max(1,Math.floor(innerWidth*scale));
+          kineticCanvas.height=Math.max(1,Math.floor(innerHeight*scale));
+          kineticCanvas.style.width=innerWidth+"px";kineticCanvas.style.height=innerHeight+"px";
+          gl.viewport(0,0,kineticCanvas.width,kineticCanvas.height);
+          gl.uniform2f(resolution,kineticCanvas.width,kineticCanvas.height);
+          drawAt(reduceMotion?4.35:(performance.now()-nebulaStart)*.001);
+        }
+        function drawAt(seconds){
+          if(gl.isContextLost()) return;
+          gl.useProgram(program);
+          gl.uniform1f(time,seconds);
+          gl.uniform2f(mouse,nebulaMouse.x,nebulaMouse.y);
+          gl.uniform1f(scroll,nebulaScroll);
+          gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+        }
+        let lastFrame=0;
+        function render(now){
+          if(!nebulaRunning||document.hidden){nebulaRunning=false;return;}
+          if(now-lastFrame>=32){drawAt((now-nebulaStart)*.001);lastFrame=now;}
+          nebulaFrame=requestAnimationFrame(render);
+        }
+        window.addEventListener("resize",resizeNebula,{passive:true});
+        window.addEventListener("pointermove",e=>{
+          nebulaMouse.x=e.clientX/Math.max(1,innerWidth);
+          nebulaMouse.y=1-e.clientY/Math.max(1,innerHeight);
+        },{passive:true});
+        window.addEventListener("scroll",()=>{
+          const max=document.documentElement.scrollHeight-innerHeight;
+          nebulaScroll=max>0?scrollY/max:0;
+        },{passive:true});
+        kineticCanvas.addEventListener("webglcontextlost",e=>{e.preventDefault();nebulaRunning=false;cancelAnimationFrame(nebulaFrame);});
+        resizeNebula();
+        if(!reduceMotion){
+          nebulaRunning=true;
+          nebulaFrame=requestAnimationFrame(render);
+          document.addEventListener("visibilitychange",()=>{
+            if(document.hidden){nebulaRunning=false;cancelAnimationFrame(nebulaFrame);}
+            else if(!nebulaRunning){nebulaRunning=true;nebulaStart=performance.now()-nebulaStart;nebulaFrame=requestAnimationFrame(render);}
+          });
+        }
+      } catch(error) {
+        console.warn("Using the lightweight ambient fallback:",error);
+        startNebulaFallback();
+      }
+    }
+    initialiseNebula();
 
     let pointerRaf = 0;
     window.addEventListener('pointermove', e => {
