@@ -11,7 +11,7 @@
   <title>Dhruv Goyal — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
   <style>
     :root {
       color-scheme: dark;
@@ -470,6 +470,7 @@
     .ambient .beam-art { opacity:0; }
     body::before { opacity:.34; }
     .hero { isolation:isolate; }
+    .hero-subtitle { font-family:"Cormorant Garamond",Georgia,serif; font-style:italic; font-weight:600; font-size:clamp(29px,3.4vw,43px); letter-spacing:-.025em; color:#f0e5ff; }
     .hero::before { content:""; position:absolute; z-index:0; inset:7% -10% 0 23%; pointer-events:none; background:radial-gradient(ellipse at 58% 48%,rgba(116,38,191,.13),transparent 63%); filter:blur(40px); }
     .hero-copy,.hero-portrait { position:relative; z-index:2; }
     .hero-portrait .portrait-frame { box-shadow:0 32px 100px rgba(0,0,0,.66),0 0 75px rgba(153,66,255,.16),inset 0 1px 0 rgba(255,255,255,.1); }
@@ -717,7 +718,7 @@
       float fbm(vec2 p) {
         float value = 0.0;
         float amplitude = 0.5;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
           value += amplitude * noise(p);
           p = mat2(1.6, -1.2, 1.2, 1.6) * p * 1.17;
           amplitude *= 0.5;
@@ -753,7 +754,8 @@
         );
         float cloud = fbm(p*2.85 + warp*1.8 + vec2(-t*0.18, t*0.10));
         float wisps = smoothstep(0.27, 0.78, cloud) * exp(-radius*1.35);
-        float smoke = wisps * (0.48 + 0.52*fbm(p*5.0 + warp*2.2 - vec2(t*0.08)));
+        float detail = noise(p*7.2 + warp*3.0 - vec2(t*0.08));
+        float smoke = wisps * (0.42 + 0.58*detail);
 
         // Repeating energy blooms: sharp petal-like rays nested inside soft nebula.
         float beatA = softPulse(mod(u_time, 13.0), 4.35, 1.45);
@@ -890,7 +892,7 @@
         const scroll=gl.getUniformLocation(program,"u_scroll");
         nebulaGL=gl;nebulaProgram=program;
         function resizeNebula(){
-          const scale=Math.min(devicePixelRatio||1,1.1,1500/innerWidth,1050/innerHeight);
+          const scale=Math.min(devicePixelRatio||1,1.1,1250/innerWidth,900/innerHeight);
           kineticCanvas.width=Math.max(1,Math.floor(innerWidth*scale));
           kineticCanvas.height=Math.max(1,Math.floor(innerHeight*scale));
           kineticCanvas.style.width=innerWidth+"px";kineticCanvas.style.height=innerHeight+"px";
@@ -909,7 +911,7 @@
         let lastFrame=0;
         function render(now){
           if(!nebulaRunning||document.hidden){nebulaRunning=false;return;}
-          if(now-lastFrame>=32){drawAt((now-nebulaStart)*.001);lastFrame=now;}
+          if(now-lastFrame>=33){drawAt((now-nebulaStart)*.001);lastFrame=now;}
           nebulaFrame=requestAnimationFrame(render);
         }
         window.addEventListener("resize",resizeNebula,{passive:true});
